@@ -1,0 +1,197 @@
+/* searchbar.css */
+
+/* Main Container */
+.searchbarContainer {
+  color: black;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding-top: 2rem;
+}
+
+/* Icon and Input Container */
+.headerSearch {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  max-width: 1024px;
+  position: relative;
+  /* Add position relative to the search container */
+}
+
+/* Search Input Styles */
+.headerSearchItem {
+  background-color: white;
+  display: flex;
+  padding: 13px;
+  height: 50px; /* Add a fixed height to make all items the same height */
+
+  align-items: center;
+  border: 1px solid black;
+  /* border-radius: 5px; */
+  flex-grow: 1;
+}
+
+.headerIcon {
+  color: black;
+  padding-right: 5px;
+}
+
+.headerSearchInput {
+  border: none;
+  outline: none;
+  color: gray;
+  flex-grow: 1;
+}
+
+/* Date Range Styles */
+.date {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  z-index: 2;
+}
+
+.date-reletive {
+  position: relative;
+}
+
+/* Options Styles */
+.options {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px -5px rgb(43, 205, 226);
+  z-index: 3;
+  /* Increase the z-index value to make options always on top */
+}
+
+.optionItem {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.quntity-men {
+  position: relative;
+}
+
+.optionCounter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: black;
+}
+
+.optionCounterButton {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(3, 211, 238);
+  color: black;
+  cursor: pointer;
+  background-color: white;
+}
+
+.optionCounterButton:disabled {
+  cursor: not-allowed;
+}
+
+/* Search Button Styles */
+.headerBtn {
+  background-color: red;
+  color: white;
+  font-weight: 500;
+  border: none;
+  height: 25px;
+  width: 50px;
+  /* Adjust the width as needed */
+  cursor: pointer;
+}
+
+/* Background Color for nth-child(4) of .headerSearchItem */
+.headerSearchItem:nth-child(4) {
+  background-color: red;
+  border: none;
+}
+
+.categoryDropdown,
+.frequencyDropdown {
+  border: none;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+  .headerSearch {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .headerSearchItem {
+    width: 100%;
+  }
+
+
+}
+
+@media (max-width: 768px) {
+  .searchbarContainer {
+    padding-bottom: 2rem;
+  }
+
+  .headerSearch {
+    width: 100%;
+    flex-direction: column;
+    gap: 3px;
+    padding: 20px;
+    bottom: 0;
+    /* Center the button on mobile */
+    justify-content: center;
+    /* Center the button on mobile */
+  }
+
+  .headerSearchText {
+    margin-top: 5px;
+  }
+
+
+
+  .headerSearchItem {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchbarContainer {
+    /* margin-top: 3rem; */
+  }
+
+  .headerSearch {
+    bottom: 0;
+    /* Center the button on mobile */
+  }
+
+  .headerSearchText {
+    font-size: 12px;
+  }
+
+  .headerBtn {
+    font-size: 16px;
+    width: 100%;
+    /* Full width for mobile button */
+  }
+
+  .optionItem {
+    width: 150px;
+  }
+
+  .headerSearchItem {
+    width: 100%;
+  }
+}

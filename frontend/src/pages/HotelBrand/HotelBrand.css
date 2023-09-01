@@ -1,0 +1,99 @@
+/* HotelBrand.css */
+
+.service-container {
+  /* max-width: 1200px; */
+  width: 100%;
+  padding-bottom: 150px;
+  z-index: -5;
+  position: relative;
+  background-image: url("http://www.srijanakiramhotels.com/wp-content/uploads/2016/02/our-services.jpg");
+}
+
+.service-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  /* White overlay with 50% opacity */
+  z-index: -1;
+}
+
+.service-con{
+  width: 90%;
+  margin: 0 auto;
+
+}
+.brandHeader {
+  padding: 60px;
+  margin: 0;
+}
+
+.brands {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 33px;
+}
+
+.brand-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.brand-card:hover {
+  transform: translateY(-5px);
+}
+
+.brand-image img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.brand-content {
+  padding: 20px;
+}
+
+.brand-content h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #24416B;
+  margin-bottom: 10px;
+}
+
+.brand-content p {
+  color: #24416B;
+}
+
+.statistic {
+  position: relative;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure responsiveness for mobile devices */
+@media screen and (max-width: 768px) {
+  .brands {
+    flex-direction: column;
+  }
+
+  .service-container {
+    padding: 5px;
+  }
+
+  .brand-card {
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+}

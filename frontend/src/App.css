@@ -1,0 +1,104 @@
+*,body{
+   margin: 0;
+   padding: 0;
+ }
+ 
+/* Styles for the 'ctn' button *//* Styles for the 'ctn' button */
+/* Updated button styles */
+.ctn,
+.ctn-s,
+.ctn-m,
+.ctn-l {
+  display: inline-block;
+  background-color: #24416B; 
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Medium button size */
+.ctn-m {
+  padding: 12px 24px;
+}
+
+/* Small button size */
+.ctn-s {
+  padding: 8px 16px;
+}
+
+/* Large button size */
+.ctn-l {
+  padding: 16px 32px;
+}
+
+.ctn:hover {
+  background-color: #436ba4; /* Lighter shade of red on hover */
+  transform: scale(1.05);
+}
+
+.ctn:focus {
+  outline: none;
+}
+
+.ctn:active {
+  transform: scale(0.95);
+}
+
+/* Animation for all buttons with the 'btn-animation' class */
+.ctn-a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  transform: translateX(100%);
+  transition: transform 0.3s;
+}
+
+.ctn-a:hover::before {
+  transform: translateX(0);
+}
+
+ 
+ .header-title {
+  text-align: center;
+  color: #eff1f4;
+  font-size: 45px;
+  font-family: serif;
+  font-weight: bold;
+  padding: 120px 0 70px 0;
+}
+ 
+
+.header {
+  height: 30vh;
+  margin-bottom: 60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("./images/contact_image.jpeg");
+  position: relative;
+  z-index: 1;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: -1;
+}
+ /* Footer */
+
+ 

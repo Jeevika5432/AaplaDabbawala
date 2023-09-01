@@ -1,0 +1,244 @@
+/* Navbar.css */
+
+/* Main Navbar Styles */
+.navbar-main {
+  background-color: transparent;
+  width: 100%;
+  z-index: 99;
+  padding: 10px;
+  position: absolute;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 1280px;
+}
+
+.navbar-logo {
+  font-size: 2rem;
+  color: rgb(237, 106, 106);
+  font-weight: bold;
+  font-style: italic;
+}
+
+.navbar-logo img {
+  padding-top: 0px;
+  width: 120px; /* Adjust the width to make the logo smaller */
+  height: auto; /* Maintain the aspect ratio */
+  margin-right: 10px; /* Add some spacing between the logo and text */
+}
+
+
+
+
+.navbar-logo span {
+  font-size: 1.2rem;
+  color: rgb(233, 143, 143);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.navbar-links a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative; /* Add position relative for the underline */
+}
+
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Adjust the distance of the underline from the text */
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: crimson;
+  transition: width 0.3s ease;
+}
+
+.navbar-links a.active::after {
+  width: 100%;
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+/* Toggle Button */
+.navbar-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.navbar-toggle .bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #0b0a0a;
+  margin-bottom: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-toggle .bar:last-child {
+  margin-bottom: 0;
+}
+
+.navbar-toggle.active .bar {
+  background-color: crimson;
+}
+
+/* Mobile Navigation */
+.mobile-navbar {
+  display: none;
+}
+
+.mobile-navbar-content {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-navbar-content a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #24416B;
+}
+
+.mobile-navbar-content a:hover {
+  color: crimson;
+}
+
+.mobile-navbar-content i {
+  font-size: 24px;
+}
+
+
+/* Profile Icon */
+.navbar-profile {
+  position: relative;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.navbar-profile i {
+  font-size: 20px;
+  color: #fff;
+  /* background-color: #24416B; */
+  border-radius: 50%;
+  padding: 5px;
+  outline: 1px solid white;
+}
+
+/* Profile Dropdown */
+.navbar-profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.navbar-profile-dropdown.active {
+  display: block;
+}
+
+.profile-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+}
+
+.profile-menu li {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.profile-menu li:last-child {
+  border-bottom: none;
+}
+
+.profile-menu a {
+  color: #24416B;
+  text-decoration: none;
+  font-size: 14px;
+  display: block;
+}
+
+.profile-menu a:hover {
+  background-color: rgba(251, 248, 248, 0.7);
+  color: crimson;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+
+  .navbar-profile {
+    display: none; /* Hide the profile icon in desktop navbar */
+  }
+  .navbar-container {
+    margin: 0;
+    padding: 10px 15px;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar-links.active {
+    position: absolute;
+    right: 60px;
+    top: 43px;
+    gap: 10px;
+    width: 180px;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: rgba(251, 248, 248, 0.7);
+    flex-direction: column;
+    display: flex;
+  }
+
+  .navbar-toggle {
+    display: block;
+    position: relative;
+  }
+
+  .mobile-navbar {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .navbar-main {
+    padding: 8px 15px;
+  }
+
+  .navbar-logo {
+    font-size: 1.5rem;
+  }
+
+  .navbar-logo span {
+    display: none;
+  }
+}

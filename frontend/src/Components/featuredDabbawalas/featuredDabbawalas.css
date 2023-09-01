@@ -1,0 +1,102 @@
+/* featuredProperties.css */
+
+.fpContainer {
+  overflow-x: auto;
+  max-height: 400px;
+  padding: 0 20px;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+}
+
+.fpContainer::-webkit-scrollbar {
+  display: none;
+  /* Hide the scrollbar on Chrome, Safari, and Opera */
+}
+
+.fp {
+  display: flex;
+  gap: 40px;
+}
+
+.fpItem {
+  flex: 0 0 300px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px 3px rgb(0 0 0 / 5%);
+  transition: 0.5s;
+  text-decoration: none;
+  color: black;
+}
+
+.fpImgContainer {
+  padding: 0;
+  /* No padding for the image container */
+}
+
+.fpImg {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+  transition: transform 0.2s;
+
+  /*Addedtransitionpropertyforsmoothscaling*/
+  &:hover {
+    transform: scale(1.1);
+    /* Increase the scale to 1.1 on hover */
+  }
+
+}
+
+.fpTextContainer {
+  padding: 0 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* Padding for the text section */
+}
+
+.fpName {
+  font-weight: bold;
+  font-size: 20px;
+  /* Added font size */
+  color: #24416B;
+  /* Added color */
+  margin-bottom: 5px;
+  /* Added margin at the bottom */
+}
+
+.fpCity {
+  font-weight: 300;
+}
+
+.fpPrice {
+  font-weight: 500;
+}
+
+.fpRating>button {
+  background-color: #003580;
+  color: white;
+  border: none;
+  padding: 3px 9px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.fpRating>span {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .fp {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .fpContainer {
+    padding: 5px;
+  }
+}

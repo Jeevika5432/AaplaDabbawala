@@ -1,0 +1,114 @@
+/* Contact.css */
+
+.contact-header {
+  background-color: #b35959;
+  height: 30vh;
+}
+
+.contact-content {
+  margin: 100px auto;
+}
+
+.icon {
+  color: #24416B;
+}
+
+.form input,
+.form textarea {
+  padding: 10px 0;
+  border-bottom: 2px solid #c1c1c1;
+  margin-bottom: 2.2rem;
+  /* text-transform: capitalize; */
+  transition: border-color 0.3s ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #24416B;
+}
+
+.form-control1 {
+  outline: 0;
+  border: none;
+  display: block;
+  background-color: transparent;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.form-control1:focus {
+  outline: 0;
+  border-color: crimson;
+}
+
+.contact-info {
+  text-align: center;
+  margin: 40px auto;
+}
+
+.form ::placeholder {
+  font-weight: bold;
+}
+
+.text {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.form textarea {
+  border: 2px solid #c1c1c1;
+  padding: 0.6rem !important;
+  margin-bottom: 1rem;
+}
+
+.map {
+  padding: 0;
+}
+
+
+.fade-in {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-info {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .map {
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .map {
+    margin-top: 30px;
+  }
+
+  .contact-info {
+    width: 100%;
+  }
+}
+
+
+/* Add some styles for the button */
+.ctn {
+  /* Your existing styles for the button */
+  /* ... */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add styles for the animation */

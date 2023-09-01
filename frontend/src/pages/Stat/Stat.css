@@ -1,0 +1,52 @@
+/* Stat.css */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.stat {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.stat h3 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #24416B;
+  margin-bottom: 5px;
+}
+
+.stat p {
+  color: #24416B;
+  margin: 0;
+  font-weight: 600;
+}
+
+.text-stat {
+  text-align: left;
+}
+
+/* Font Awesome Icons */
+.stat i {
+  font-size: 55px;
+  color: #24416B;
+  margin-right: 18px;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .stats {
+   display: none;
+  }
+
+}

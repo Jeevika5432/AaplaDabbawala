@@ -1,0 +1,75 @@
+.testimonial-container {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+.testimonial-title {
+  text-align: center;
+  color: #24416B;
+  font-size: 45px;
+  font-family: serif;
+  font-weight: bold;
+  margin: 20px 0 20px 0;
+}
+
+.testimonials {
+  max-width: 75%;
+  margin: auto;
+}
+
+.testimonial .slick-arrow.slick-prev,
+.testimonial .slick-arrow.slick-next {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.testimonial .slick-prev::before,
+.testimonial .slick-next::before {
+  display: none;
+}
+
+.testimonial .slick-arrow.slick-next {
+  right: -70px;
+}
+
+.testimonial .slick-arrow.slick-prev {
+  left: -70px;
+}
+
+.testimonial .slick-dots li button:before {
+  font-size: 15px;
+}
+
+.testimonial .slick-dots li {
+  top: 15px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+}
+
+.review-text {
+  flex: 1;
+}
+
+.review-text p {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .card-content {
+    flex-direction: column;
+  }
+}
