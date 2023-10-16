@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +11,7 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -17,4 +23,16 @@ html,
 body {
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
+}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  @apply bg-slate-900;
 }
