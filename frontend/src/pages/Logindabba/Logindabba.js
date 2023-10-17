@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import './Logindabba.css';
 import dabbaImage from '../../img/db_per-removebg-preview.png';
 import logoImage from '../../img/Db_logo-removebg-preview.png'
@@ -13,14 +13,14 @@ const Logindabba = () => {
     <section className="login_container section">
       <div className="container">
         <div className="row">
-         
-        <div className="logo">
-              <img src={logoImage} alt="Logo" />
-              </div>
-        <div className="col-md-6 col-image d-flex justify-content-center align-items-center">
+
+          <div className="logo">
+            <img src={logoImage} alt="Logo" />
+          </div>
+          <div className="col-md-6 col-image d-flex justify-content-center align-items-center">
             <img src={dabbaImage} alt="" className="custom-img" />
-         
- </div>
+
+          </div>
           <div className="col-md-6 col-login d-flex justify-content-center align-items-center">
             <div className="section pb-5 pt-5 pt-sm-2 text-center">
               <h6 className="mb-0 pb-3">
@@ -50,7 +50,7 @@ const Logindabba = () => {
                   </div>
                   <div className="card-back">
                     <div className="center-wrap">
-<div className="section text-center">
+                      <div className="section text-center">
                         <h4 className="mb-4 pb-3">Sign Up</h4>
                         <div className="form-group">
                           <input type="text" name="logname" className="form-style" placeholder="Your Full Name" id="logname" autoComplete="off" />
@@ -79,15 +79,15 @@ const Logindabba = () => {
                       </div>
                     </div>
                   </div>
-   </div>
+                </div>
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </section>
   );
 }
 
-export default Logindabba;
+export default Logindabba;

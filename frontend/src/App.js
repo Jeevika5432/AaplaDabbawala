@@ -12,31 +12,32 @@ import Error from "./Components/searchelements/Errors"
 import SingleProduct from "./Components/searchelements/SingleProduct"
 import ScrollToTop from './Components/searchelements/ScrollToTop';
 import PaymentForm from './Components/searchelements/PaymentForm'
-import Logindabba from './pages/Logindabba/Logindabba
+import Logindabba from './pages/Logindabba/Logindabba.js'
+
 function App() {
   return (
-      <>
-        <BrowserRouter>
+    <>
+      <BrowserRouter>
         <ScrollToTop />
 
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<FrontPage />} />
-            <Route path="/contactUs" element={<ContactUs />} />
-            <Route exact path="/ProfilePage" element={<ProfilePage />} />
-            <Route exact path="/FavouriteDabba" element={<FavouriteDabba />} />
-            
-            <Route path="/fetch-products" element={<FetchProducts />}></Route>
-        <Route path="/:name" element={<SingleProduct />}></Route>
-        <Route path="/error" element={<Error />}></Route>
-        <Route path="/payment-form" element={<PaymentForm />} />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<FrontPage />} />
+          <Route path="/contactUs" element={<ContactUs />} />
+          <Route exact path="/ProfilePage" element={<ProfilePage />} />
+          <Route exact path="/FavouriteDabba" element={<FavouriteDabba />} />
 
-            <Route path="/login" element={<Login />} />
-<Route path='/logindabba' element={<Logindabba />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </>
+          <Route path="/fetch-products" element={<FetchProducts />}></Route>
+          <Route path="/:name" element={<SingleProduct />}></Route>
+          <Route path="/error" element={<Error />}></Route>
+          <Route path="/payment-form" element={<PaymentForm />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path='/logindabba' element={<Logindabba />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 }
 
