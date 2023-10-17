@@ -12,7 +12,7 @@ import Error from "./Components/searchelements/Errors"
 import SingleProduct from "./Components/searchelements/SingleProduct"
 import ScrollToTop from './Components/searchelements/ScrollToTop';
 import PaymentForm from './Components/searchelements/PaymentForm'
-
+import Logindabba from './pages/Logindabba/Logindabba
 function App() {
   return (
       <>
@@ -32,7 +32,7 @@ function App() {
         <Route path="/payment-form" element={<PaymentForm />} />
 
             <Route path="/login" element={<Login />} />
-
+<Route path='/logindabba' element={<Logindabba />} />
           </Routes>
           <Footer />
         </BrowserRouter>
