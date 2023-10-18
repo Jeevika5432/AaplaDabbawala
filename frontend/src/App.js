@@ -18,7 +18,7 @@ import PaymentForm from "./Components/searchelements/PaymentForm";
 import Logindabba from "./pages/Logindabba/Logindabba.js";
 import Bookings from "./Components/Mybookings/Bookings";
 import { UserProvider } from "./context/UserContext";
-// import PricingCard from "./Components/Pricing";
+import PricingCard from "./Components/Pricing";
 
 
 import { DabbaProvider } from "./context/DabbaContext";
