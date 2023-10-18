@@ -192,11 +192,6 @@ const Logindabba = () => {
                             placeholder=""
                             onChange={handleChange}
                           />
-                          <img
-                            src={file ? URL.createObjectURL(file) : ''}
-                            alt=""
-                            className="mx-12 -mt-4 py-2 object-contain w-20 z-20"
-                          />
                         </div>
                         <button className="btn mt-4" onClick={handleSignupSubmit}>
                           submit
