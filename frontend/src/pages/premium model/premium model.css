@@ -1,1 +1,77 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0rem 1rem;
+    background-color: #f4dd9a;
+    border-radius: 10px;
+}
 
+.foodName {
+    font-size: 24px;
+    font-weight: bolder;
+    padding: 1rem .5rem;
+}
+
+.foodDesc {
+    font-size: 16px;
+    text-align: left;
+    padding: 0rem .5rem;
+    margin-bottom: 1rem;
+}
+
+/*.btn {
+    background-color: #d85014;
+    color: #fefefe;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1rem 0rem;
+    width: 300px;
+    outline: none;
+    border: none;
+    border-radius: 0px 0px 10px 10px;
+    cursor: pointer;
+    box-shadow: 0 0 5px cyan,
+0 0 25px cyan;
+}
+
+
+   
+
+button {
+box-shadow: 0 0 5px cyan,
+0 0 25px cyan;
+}
+.button:hover {
+box-shadow: 0 0 5px cyan,
+0 0 25px cyan, 0 0 50px cyan,
+0 0 100px cyan, 0 0 200px cyan;
+}*/
+
+button {
+    
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    width: 300px;
+    border: none;
+    background-color: cyan;
+    box-shadow: 0 0 5px cyan,
+    0 0 25px cyan;
+    }
+    button:hover {
+        transition: 0.5s;
+        box-shadow: 0 0 5px cyan,
+        0 0 25px cyan, 0 0 50px cyan,
+        0 0 25px cyan, 0 0 75px cyan;
+    }
+
+
+
+
+
+
+.img {
+    width: 300px;
+    height: 250px;
+    border-radius: 10px 10px 0px 0px ;
+}
