@@ -170,7 +170,9 @@ export default function SingleProduct() {
         <div className="text-center my-5">
           <button
             className="bg-white text-slate-800 py-2 px-4"
-            onClick={() => navigate("/payment-form")}
+            onClick={() => navigate("/payment-form",{
+              state: { userId, frequency:filterCriteria.frequency }
+            })}
           >
             Payment
           </button>

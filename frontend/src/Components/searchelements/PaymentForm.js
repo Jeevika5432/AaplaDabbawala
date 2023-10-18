@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import './PaymentForm.css';
-
+import axios from "axios";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import Dabawalaimage from '../../img/db_per-removebg-preview.png';
+import { UserContext } from '../../context/UserContext';
+import { useContext } from 'react';
 
 const PaymentForm = ({ onCancel }) => {
+  const { isLoggedIn, userr, checkUserLoggedIn, handleLogout } = useContext(UserContext);
+
+  const location = useLocation();
+  const {state} = location;
+
+
   const [foodName, setFoodName] = useState(""); // Change UID to Food Name
   const [mealType, setMealType] = useState("Veg");
   const [quantity, setQuantity] = useState("");
@@ -15,26 +23,53 @@ const PaymentForm = ({ onCancel }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Validate the form inputs here
-    if (foodName && mealType && quantity && address && orderDate) { // Check for orderDate
-      // Set the orderPlaced state to true
-      setOrderPlaced(true);
-
-      // You can also reset the form inputs here if needed
-      setFoodName("");
-      setMealType("Veg");
-      setQuantity("");
-      setAddress("");
-      setOrderDate("");
+    if (foodName && mealType && quantity && address && orderDate) {
+      // Prepare the order data
+      const orderData = {
+        userId: state.userId, // Get userId from the state
+        dabbawalaId: state.dabbawalaId, // Get dabbawalaId from the state
+        orderType: state.frequency, // Get order type from the state
+        foodName,
+        mealType,
+        quantity,
+        address,
+        orderDate,
+        // Add other fields as needed
+      };
+  
+      try {
+        // Send a POST request to your backend endpoint to create the order
+        const response = await axios.post('http://localhost:3000/api/booking/create', orderData);
+  
+        // Check the response status and handle it accordingly
+        if (response.status === 201) {
+          // Order was successfully created
+          setOrderPlaced(true);
+          // You can reset the form inputs here if needed
+          setFoodName('');
+          setMealType('Veg');
+          setQuantity('');
+          setAddress('');
+          setOrderDate('');
+        } else {
+          // Handle other status codes as needed
+          window.alert('Order creation failed.');
+        }
+      } catch (error) {
+        // Handle any errors that occur during the request
+        console.error(error);
+        window.alert('An error occurred while creating the order.');
+      }
     } else {
       // If any required field is missing, show an error message
-      window.alert("Please fill in all the required fields.");
+      window.alert('Please fill in all the required fields.');
     }
   };
-
+  
   return (
     <div className="order-form">
       <div className="flex-container">
