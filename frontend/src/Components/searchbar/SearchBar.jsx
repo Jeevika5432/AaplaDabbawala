@@ -20,7 +20,7 @@ const SearchBar = () => {
   };
 
   const handleSearch = () => {
-    navigate(`/dabbawalas-in/${destination}`, {
+    navigate("/fetch-products", {
       state: { destination, category, frequency },
     });
   };

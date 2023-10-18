@@ -1,0 +1,109 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=DM+Serif+Display&family=Oswald:wght@300&family=Playfair+Display:wght@400;600&family=Roboto+Slab&family=Young+Serif&display=swap');
+
+.order-form {
+  background-color: bg-slate-900;
+  padding: 20px;
+  /*border: 1px solid #000000;
+  */border-radius: 5px;
+  margin: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  top: 80px;
+  box-shadow: 30px 30px 30px rgba(0, 0, 0, 0.2);
+  /*Addshadow*/transition: box-shadow 0.s;
+/*Smoothhovertransition*/color:white;
+  -webkit-transition: box-shadow 0.3s;
+  -moz-transition: box-shadow 0.3s;
+  -ms-transition: box-shadow 0.3s;
+  -o-transition: box-shadow 0.3s;
+}
+
+.order-form:hover {
+  box-shadow: 0px 0px 10px rgba(223, 210, 210, 0.4); /* Enhance shadow on hover */
+}
+
+
+.order-form h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+
+}
+
+.order-form label {
+  display: block;
+  margin-top: 10px;
+  font-family: 'Playfair Display', serif;
+ 
+
+}
+
+.order-form input,
+.order-form select,
+.order-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Playfair Display', serif;
+  color:black;
+
+}
+
+/* Add hover effect to the submit button */
+.order-form button {
+  background-color: #062b52;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Playfair Display', serif;
+  transition: background-color 0.3s, transform 0.2s; 
+
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.order-form button[type="button"] {
+  background-color: #efe6e6;
+  margin-left: 20px;
+  font-family: 'Playfair Display', serif;
+  color:black;
+  margin-right:10px;
+}
+
+
+.order-form button:hover {
+  background-color: #022041; 
+  transform: scale(1.05); 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); 
+}
+
+.young
+{
+  font-family: 'Playfair Display', serif;
+  font:bold;
+  color:white;
+
+}
+.flex-container {
+  display: flex; /* Make it a flex container */
+  align-items: center; /* Vertically center the items */
+}
+@media (max-width: 768px) {
+  .flex-container {
+    flex-direction: column; /* Change the direction to column on smaller screens */
+  }
+
+  .order-form label {
+    display: inline; /* Display labels inline for better alignment */
+    margin-top: 5px;
+  }
+}
+/* Your previous CSS... */
