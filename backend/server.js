@@ -7,6 +7,7 @@ import { connectDB } from "./config/db.js";
 
 import authRoute from "./routes/auth.js"
 import userRoute from "./routes/user.js"
+import auth2Route from "./routes/auth2.js"
 import dabbawalaRoute from "./routes/dabbawala.js"
 import paymentRoute from "./routes/payment.js"
 import bookingRoute from "./routes/booking.js"
@@ -37,6 +38,7 @@ app.use(cookieParser());
 // routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+app.use("/api/auth2", auth2Route);
 app.use("/api/dabbawala", dabbawalaRoute);
 app.use("/api/payment", paymentRoute);
 app.use("/api/booking", bookingRoute);

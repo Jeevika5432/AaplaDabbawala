@@ -1,62 +1,6 @@
 import Dabbawala from "../models/Dabbawala.js";
 import cloudinary from '../config/cloudinary.js'; // Import the Cloudinary configuration
 
-import bcrypt from "bcryptjs";
-
-export const dabbawalaSignup = async (req, res, next) => {
-  try {
-    const { email, password, name, aadharCard, profilePicture, phoneNumber } = req.body;
-
-    const existingDabbawala = await Dabbawala.findOne({ email });
-    if (existingDabbawala) {
-      return res.status(409).json({ error: "Dabbawala with this email already exists." });
-    }
-
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(password, salt);
-
-    const newDabbawala = new Dabbawala({
-      email,
-      password: hash,
-      name,
-      aadharCard,
-      profilePicture,
-      phoneNumber
-    });
-
-    await newDabbawala.save();
-    res.status(201).json({ message: "Dabbawala registered successfully." });
-  } catch (err) {
-    next(err);
-  }
-};
-
-// export const dabbawalaLogin = async (req, res, next) => {
-//   // Implement Dabbawala login logic here
-// };
-
-// export const updateDabbawalaDetails = async (req, res, next) => {
-//   // Implement Dabbawala details update logic here
-// };
-
-
-// export const addDabbawala = async (req, res, next) => {
-//   try {
-//     const dabbawala = new Dabbawala({
-//       name: req.body.name,
-//       age: req.body.age,
-//       locations: req.body.locations,
-//       prices: req.body.prices,
-//       foodMenu: req.body.foodMenu,
-//       category: req.body.category,
-//     });
-
-//     await dabbawala.save();
-//     res.status(201).json(dabbawala);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
 
 // export const updateDabbawala = async (req, res, next) => {
 //   try {
@@ -83,38 +27,6 @@ export const dabbawalaSignup = async (req, res, next) => {
 //   }
 // };
 
-
-export const createDabbawala = async (req, res, next) => {
-  const { email, name, phone, yearOfExperience } = req.body;
-  const profileImage = req.files.profileImage[0];
-  const idCard = req.files.idCard[0];
-
-  try {
-    // Upload profileImage to Cloudinary
-    const profileImageResult = await cloudinary.uploader.upload(profileImage.path);
-
-    // Upload idCard to Cloudinary
-    const idCardResult = await cloudinary.uploader.upload(idCard.path);
-
-    const newDabbawala = new Dabbawala({
-      email,
-      name,
-      phone,
-      yearOfExperience,
-      profileImage: profileImageResult.secure_url,
-      idCard: idCardResult.secure_url,
-
-      // Store the Cloudinary public_ids in MongoDB
-      profileImagePublicId: profileImageResult.public_id,
-      idCardPublicId: idCardResult.public_id,
-    });
-
-    const savedDabbawala = await newDabbawala.save();
-    res.status(200).json(savedDabbawala);
-  } catch (err) {
-    next(err);
-  }
-};
 
 
 export const deleteDabbawala = async (req, res, next) => {

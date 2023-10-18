@@ -1,5 +1,6 @@
 import express from "express";
-import { deleteDabbawala,  getDabbawala, getDabbawalas } from "../controllers/dabbawala.js";
+import { login, register, dabbaVerification, logout } from "../controllers/auth2.js";
+const router = express.Router();
 import multer from 'multer';
 
 const storage = multer.diskStorage({
@@ -15,15 +16,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-const router = express.Router();
 
-//delete
-router.delete("/:id", deleteDabbawala);
+router.post("/register", upload.single('aadharCard'), register);
+router.post("/login", login);
 
-//get
-router.get("/find/:id", getDabbawala);
+router.get("/dabbawala", dabbaVerification);
+router.get("/logout", logout);
 
-//get all
-router.get("/", getDabbawalas);
 
 export default router

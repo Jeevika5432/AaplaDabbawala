@@ -11,7 +11,7 @@ export const DabbaProvider = ({ children }) => {
    const checkDabbaLoggedIn = async () => {
       try {
          // This includes cookies in the request
-         const response = await axios.get('http://localhost:8800/api/auth2/dabba', {
+         const response = await axios.get('http://localhost:8800/api/auth2/dabbawala', {
             withCredentials: true,
             credentials: "include",
          });
