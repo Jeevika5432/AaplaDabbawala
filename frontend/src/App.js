@@ -64,7 +64,7 @@ function App() {
                             <Route
                                 path="/dashboard"
                                 element={<DashboardPage />}
-                            />{" "}
+                            />
                             <Route
                                 path="/logindabba"
                                 element={<Logindabba />}

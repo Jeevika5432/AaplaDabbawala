@@ -1,0 +1,59 @@
+/* ProfileDetails.css */
+
+.profile-details-container {
+    padding: 20px;
+    /* margin-bottom: 20px; */
+
+    background-color: #fff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.profile-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.profile-details div {
+    margin-bottom: 10px;
+}
+
+.profile-details label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333; /* Dark text color */
+}
+
+.profile-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-details li {
+    margin-bottom: 5px;
+    color: #555; /* Slightly darker text color */
+}
+
+.edit-profile-button {
+    background-color: #4caf50; /* Green background color */
+    color: #fff; /* White text color */
+    padding: 10px 15px; /* Padding for button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.edit-profile-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Additional styling can be added as needed */

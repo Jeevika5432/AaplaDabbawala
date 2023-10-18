@@ -1,0 +1,55 @@
+/* OrdersSection.css */
+
+.orders-section {
+    margin-top: 20px;
+}
+
+.orders-toggle {
+    margin-bottom: 20px;
+}
+
+.orders-toggle button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.orders-toggle button:hover {
+    background-color: #2980b9;
+}
+
+.orders-day {
+    margin-bottom: 20px;
+}
+
+.orders-day h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.order-card {
+    background-color: #ecf0f1;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.order-card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.order-card p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.order-card p:first-child {
+    font-weight: bold;
+}
+
+.order-card p:last-child {
+    margin-bottom: 0;
+}

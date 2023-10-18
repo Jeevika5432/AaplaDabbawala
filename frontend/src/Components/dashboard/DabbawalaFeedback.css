@@ -1,0 +1,43 @@
+/* DabbawalaFeedback.css */
+
+.feedbacks-container {
+    /* border: 2px solid #ddd; */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.feedback-container h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.feedback-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.feedback-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.user-info strong {
+    font-size: 18px;
+}
+
+.user-info span {
+    font-size: 16px;
+    color: #777;
+}
+
+.feedback-comment {
+    font-size: 16px;
+}
+
+/* Additional styling can be added as needed */
