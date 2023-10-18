@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import data from "../../db.json";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // Custom StarRating component
 function StarRating({ rating }) {
-  const starRating = rating ? `${rating}/5` : "4/5";
+  const starRating = rating ? `${rating}` : "4.3/5";
 
   const starRatingStyle = {
     fontSize: "1.3rem", // Adjust the font size as needed
@@ -23,51 +23,74 @@ function StarRating({ rating }) {
 }
 
 export default function FetchProducts() {
-  const [items] = useState(data);
+  const [items, setItems] = useState([]);
   const navigate = useNavigate();
+  // const location = useLocation();
+  // const { state } = location;
+
+  const filterCriteria = JSON.parse(localStorage.getItem('searchData'));
+
+  // Fetch items based on filter criteria (veg/non-veg/jain)
+  useEffect(() => {
+    itemFunction();
+  }, []);
+
+
+  const itemFunction = async () => {
+    // Define your filter criteria based on selected options (e.g., state.category)
+    const filterCriteria1 = {
+      category: filterCriteria.category,
+      location: filterCriteria.destination
+    };
+
+    console.log(filterCriteria1)
+
+    try {
+      const response = await axios.post("http://localhost:8800/api/dabbawala/all", filterCriteria1);
+
+      console.log(response.data);
+      setItems(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
       <section className="px-5 py-10 lg:py-20 xl:max-w-6xl xl:mx-auto grid grid-cols-1 gap-5 lg:gap-10 xl:gap-20">
-        {items.products.map(({ id, name, desc, location, Pricing, small, large, rating }, index) => (
+        {items.map((item) => (
           <article
-            key={id}
-            className={`grid grid-cols-1 gap-1 md:grid-cols-2 md:place-items-center lg:gap-10 xl:gap-20 ${
-              desc ? "mb-5" : ""
-            }`}
+            key={item._id}
+            className={`grid grid-cols-1 gap-1 md:grid-cols-2 md:place-items-center lg:gap-10 xl:gap-20 ${item.desc ? "mb-5" : ""
+              }`}
           >
             <div>
               <picture>
-                <source media="(min-width: 768px)" srcSet={large} />
-                <img src={small} alt={name} />
+                <source media="(min-width: 768px)" srcSet={item.profilePicture} />
+                <img src={item.profilePicture} alt={item.name} />
               </picture>
             </div>
 
             <div>
-              <h2 className="font-bold text-4xl mb-5 text-white">{name}</h2>
+              <h2 className="font-bold text-4xl mb-5 text-white">{item.name}</h2>
               <p className="text-slate-100 mb-2">
                 <strong>Menu:</strong>
               </p>
-              {desc && (
-                <p
-                  className="text-slate-300 mb-5"
-                  dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, "<br>") }}
-                />
-              )}
+              <p
+                className="text-slate-300 mb-5">
+                {item[filterCriteria.category].menu}
+              </p>
               <p className="text-slate-300 mb-2">
-                <strong>Location:</strong> {location}
+                <strong>Locations:</strong> {item.locations.join(", ")}
               </p>
               <p className="text-slate-300 mb-10">
-                <strong>Pricing:</strong> {Pricing}
+                <strong>Pricing:</strong> {item[filterCriteria.category].price}
               </p>
               <div className="flex items-center justify-between">
-                <Link
-                  to={`/${name}`}
-                  className="border-2 border-white black py-2 px-4 text-white"
-                >
+                <Link to={`/${item.name}`} className="border-2 border-white black py-2 px-4 text-white">
                   More Details
                 </Link>
-                <StarRating rating={rating} />
+                <StarRating rating={item.rating} />
               </div>
             </div>
           </article>
@@ -75,4 +98,4 @@ export default function FetchProducts() {
       </section>
     </>
   );
-}
+}  

@@ -3,7 +3,7 @@
 import React from 'react';
 import './ProfileDeets.css';
 
-const ProfileDetails = ({ name, locations, contactNumber, dailySchedule, jain, veg, nonVeg }) => {
+const ProfileDetails = ({ name, locations, contactNumber, dailySchedule, jain, veg, nonVeg, rating }) => {
   return (
     <div className="profile-details-container">
       <div className="profile-details">
@@ -28,19 +28,24 @@ const ProfileDetails = ({ name, locations, contactNumber, dailySchedule, jain, v
           </label>
         </div>
         <div>
-          <label>
-            <strong>Categories:</strong>
-          </label>
-          <ul>
-            <li>Vegetarian: {(veg ? veg.isPresent : false) ? 'Yes' : 'No'}</li>
-            <li>Jain: {(jain ? jain.isPresent : false) ? 'Yes' : 'No'}</li>
-            <li>Non-Vegetarian: {(nonVeg ? nonVeg.isPresent : false) ? 'Yes' : 'No'}</li>
-          </ul>
+            <label>
+              <strong>Rating:</strong> {rating || '4.3/5'}
+            </label>
+          </div>
+          <div>
+            <label>
+              <strong>Categories:</strong>
+            </label>
+            <ul>
+              <li>Vegetarian: {(veg ? veg.isPresent : false) ? 'Yes' : 'No'}</li>
+              <li>Jain: {(jain ? jain.isPresent : false) ? 'Yes' : 'No'}</li>
+              <li>Non-Vegetarian: {(nonVeg ? nonVeg.isPresent : false) ? 'Yes' : 'No'}</li>
+            </ul>
+          </div>
         </div>
+        <button className="edit-profile-button">Edit Profile</button>
       </div>
-      <button className="edit-profile-button">Edit Profile</button>
-    </div>
-  );
+      );
 };
 
-export default ProfileDetails;
+      export default ProfileDetails;

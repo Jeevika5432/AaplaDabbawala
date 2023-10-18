@@ -18,19 +18,14 @@ const upload = multer({ storage: storage });
 const router = express.Router();
 
 // update
-// router.put("/", updateDabbawala);
-router.put("/",upload.single('profilePicture'), updateDabbawala);
+router.put("/", upload.single('profilePicture'), updateDabbawala);
 
 router.post("/addreview", addReview);
-
 
 //get
 router.get("/find/:id", getDabbawala);
 
 //get all
-router.get("/all", getDabbawalas);
+router.post("/all", getDabbawalas);
 
-
-// //delete
-// router.delete("/:id", deleteDabbawala);
 export default router

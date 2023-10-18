@@ -86,9 +86,54 @@ export const getDabbawalaReviews = async (req, res, next) => {
   }
 };
 
+export const getDabbawalas = async (req, res) => {
+  const { location, category } = req.body;
+  const filter = {};
+
+  // Filter by location
+  if (location) {
+    filter.locations = location;
+  }
+
+  // Filter by category
+  if (category) {
+    filter[`${category}.isPresent`] = true;
+  }
+
+  try {
+    const dabbawalas = await Dabbawala.find(filter);
+
+    if (dabbawalas.length === 0) {
+      return res.status(404).json({ message: 'No Dabbawalas found for the given criteria.' });
+    }
+
+    res.json(dabbawalas);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error querying Dabbawalas' });
+  }
+}
+
+export const getDabbawala = async (req, res) => {
+  const { dabbawalaId } = req.params.id;
+
+  try {
+    const dabbawala = await Dabbawala.findById(dabbawalaId);
+
+    if (!dabbawala) {
+      return res.status(404).json({ message: 'Dabbawala not found' });
+    }
+
+    res.json(dabbawala);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error querying Dabbawala by ID' });
+  }
+};
 
 
 
+/*
 export const getDabbawala = async (req, res, next) => {
   try {
     const dabbawala = await Dabbawala.findById(req.params.id);
@@ -152,6 +197,9 @@ export const getDabbawalas = async (req, res, next) => {
       res.status(500).json({ error: 'An error occurred' });
   }
 };
+*/
+
+
 // export const deleteDabbawala = async (req, res, next) => {
 //   try {
 //     const dabbawala = await Dabbawala.findById(req.params.id);

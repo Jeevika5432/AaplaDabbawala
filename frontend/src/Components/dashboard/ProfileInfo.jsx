@@ -20,6 +20,7 @@ const ProfileInfo = () => {
     jain: dabbaa.jain,
     veg: dabbaa.veg,
     nonVeg: dabbaa.nonVeg,
+    rating: dabbaa.rating
   };
 
   return (

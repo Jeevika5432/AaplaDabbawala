@@ -1,7 +1,7 @@
 import "./searchbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHotel, faUtensils, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { useState} from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
@@ -20,6 +20,11 @@ const SearchBar = () => {
   };
 
   const handleSearch = () => {
+    localStorage.setItem('searchData', JSON.stringify({
+      destination: destination,
+      category: category,
+      frequency: frequency
+    }));
     navigate("/fetch-products", {
       state: { destination, category, frequency },
     });
@@ -39,7 +44,7 @@ const SearchBar = () => {
           />
         </div>
         <div className="headerSearchItem">
-        <FontAwesomeIcon icon={faUtensils} className="headerIcon" /> {/* Added food icon */}
+          <FontAwesomeIcon icon={faUtensils} className="headerIcon" /> {/* Added food icon */}
 
           <select
             value={category}
@@ -48,12 +53,12 @@ const SearchBar = () => {
           >
             <option value="any">Any</option>
             <option value="veg">Veg</option>
-            <option value="non-veg">Non-Veg</option>
+            <option value="nonVeg">Non-Veg</option>
             <option value="jain">Jain</option>
           </select>
         </div>
         <div className="headerSearchItem">
-        <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+          <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
 
           <select
             value={frequency}
