@@ -57,7 +57,7 @@ function App() {
                             />
                             <Route path="/login" element={<Login />} />
                             <Route
-                                path="/dabbawalaform"
+                                path="/"
                                 element={<FormsPage />}
                             />
                             <Route path="/service" element={<ServicePage />} />

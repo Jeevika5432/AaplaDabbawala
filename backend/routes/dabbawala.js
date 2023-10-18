@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteDabbawala, createDabbawala, getDabbawala, getDabbawalas } from "../controllers/dabbawala.js";
+import { deleteDabbawala,  getDabbawala, getDabbawalas } from "../controllers/dabbawala.js";
 import multer from 'multer';
 
 const storage = multer.diskStorage({
@@ -16,9 +16,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const router = express.Router();
-
-//create
-router.post('/', upload.fields([{ name: 'profileImage', maxCount: 1 }, { name: 'idCard', maxCount: 1 }]), createDabbawala);
 
 //delete
 router.delete("/:id", deleteDabbawala);

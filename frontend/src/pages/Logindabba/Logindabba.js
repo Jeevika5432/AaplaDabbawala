@@ -49,7 +49,7 @@ const Logindabba = () => {
       });
       checkDabbaLoggedIn();
       console.log("Login succesful");
-      navigate("/dabbaform");
+      navigate("/dabbawalaform");
     } catch (error) {
       console.error(error.response);
     }

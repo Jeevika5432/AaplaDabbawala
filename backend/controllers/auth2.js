@@ -9,8 +9,6 @@ export const register = async (req, res, next) => {
       const { email } = req.body;
       const aadharCard = req.file;
 
-      console.log(aadharCard);
-
       const existingDabbawala = await Dabbawala.findOne({ email });
       if (existingDabbawala) {
          console.log("exist");
@@ -19,11 +17,9 @@ export const register = async (req, res, next) => {
 
       // Upload idCard to Cloudinary
       const aadharCardResult = await cloudinary.uploader.upload(aadharCard.path);
-      console.log(aadharCardResult);
 
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.password, salt);
-      console.log("h");
       const newDabbawala = new Dabbawala({
          ...req.body,
          password: hash,
