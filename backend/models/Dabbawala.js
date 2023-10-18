@@ -62,14 +62,14 @@ const DabbawalaSchema = new mongoose.Schema(
       type: String,
     },
 
-    dabbawalaDetails: {
-      type: String,
-    },
+    // dabbawalaDetails: {
+    //   type: String,
+    // },
 
-    mealTypes: {
-      type: String,
-      enum: ["jain", "veg", "nonVeg"],
-    },
+    // mealTypes: {
+    //   type: String,
+    //   enum: ["jain", "veg", "nonVeg"],
+    // },
 
     jain:{
       type: dabbaSchema

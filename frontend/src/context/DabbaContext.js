@@ -19,8 +19,8 @@ export const DabbaProvider = ({ children }) => {
          console.log(response.data);
          if (response.data.status) {
             setIsLoggedInD(true);
-            setDabbaa(response.data.user);
-            console.log(response.data.user);
+            setDabbaa(response.data.dabbawala);
+            console.log(response.data.dabbawala);
 
          }
          else {

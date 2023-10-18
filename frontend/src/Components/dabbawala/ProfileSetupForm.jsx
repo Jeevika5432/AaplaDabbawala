@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
 import './ProfileSetupForm.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
+import { DabbaContext } from "../../context/DabbaContext";
+import { useContext } from "react";
 
 
 const ProfileSetupForm = () => {
+  const navigate = useNavigate();
+  const {
+    isLoggedInD,
+    dabbaa,
+    setDabbaa,
+    checkDabbaLoggedIn,
+    handleLogout2,
+  } = useContext(DabbaContext);
+
   // State variables to store form data
   const [name, setName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
-  const [deliveryPrice, setDeliveryPrice] = useState('');
-  const [foodMenu, setFoodMenu] = useState('');
   const [categories, setCategories] = useState([]);
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [dailySchedule, setDailySchedule] = useState('');
@@ -16,9 +28,24 @@ const ProfileSetupForm = () => {
   const [locationInput, setLocationInput] = useState('');
 
   // Food details states
-  const [jainFoodDetails, setJainFoodDetails] = useState({ foodName: '', foodPrice: '' });
-  const [vegetarianFoodDetails, setVegetarianFoodDetails] = useState({ foodName: '', foodPrice: '' });
-  const [nonVegetarianFoodDetails, setNonVegetarianFoodDetails] = useState({ foodName: '', foodPrice: '' });
+  const [jainFoodDetails, setJainFoodDetails] = useState({
+    foodName: '',
+    foodMenu: '',
+    foodPrice: '',
+  });
+
+  const [vegetarianFoodDetails, setVegetarianFoodDetails] = useState({
+    foodName: '',
+    foodMenu: '',
+    foodPrice: '',
+  });
+
+  const [nonVegetarianFoodDetails, setNonVegetarianFoodDetails] = useState({
+    foodName: '',
+    foodMenu: '',
+    foodPrice: '',
+  });
+
 
   // Helper functions
   const handleLocationChange = (e) => setLocationInput(e.target.value);
@@ -60,23 +87,53 @@ const ProfileSetupForm = () => {
   };
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Log the data for now
-    console.log({
-      name,
-      contactNumber,
-      deliveryPrice,
-      foodMenu,
-      categories,
-      profilePhoto,
-      dailySchedule,
-      locations,
-      jainFoodDetails,
-      vegetarianFoodDetails,
-      nonVegetarianFoodDetails,
+
+    const formData = new FormData();
+    formData.append('userId', dabbaa._id);
+    formData.append('name', name);
+    locations.forEach((location) => {
+      formData.append('locations', location);
     });
-    // Send this data to your backend for further processing and storage
+    formData.append('phone', contactNumber);
+    formData.append('dailySchedule', dailySchedule);
+    // categories.forEach((category) => {
+    //   formData.append('categories', category);
+    // });
+    formData.append('profilePicture', profilePhoto);
+
+    // Add Jain, Vegetarian, and Non-Vegetarian details to the form data
+    if (categories.includes('jain')) {
+      formData.append('jain[isPresent]', true);
+      formData.append('jain[name]', jainFoodDetails.foodName);
+      formData.append('jain[menu]', jainFoodDetails.foodMenu);
+      formData.append('jain[price]', jainFoodDetails.foodPrice);
+    }
+    if (categories.includes('vegetarian')) {
+      formData.append('veg[isPresent]', true);
+      formData.append('veg[name]', vegetarianFoodDetails.foodName);
+      formData.append('veg[menu]', vegetarianFoodDetails.foodMenu);
+      formData.append('veg[price]', vegetarianFoodDetails.foodPrice);
+    }
+    if (categories.includes('non-vegetarian')) {
+      formData.append('nonVeg[isPresent]', true);
+      formData.append('nonVeg[name]', nonVegetarianFoodDetails.foodName);
+      formData.append('nonVeg[menu]', nonVegetarianFoodDetails.foodMenu);
+      formData.append('nonVeg[price]', nonVegetarianFoodDetails.foodPrice);
+    }
+    // console.log("donie1")
+    // console.log(formData);
+
+    try {
+      const response = await axios.put('http://localhost:8800/api/dabbawala/', formData);
+      console.log(response.data);
+      checkDabbaLoggedIn();
+      navigate('/dashboard');
+    } catch (error) {
+      console.error(error);
+    }
+
   };
 
   return (
@@ -86,24 +143,24 @@ const ProfileSetupForm = () => {
           <div className="profile-photo-section">
             <label className="profile-photo-label">
               {profilePhoto ? (
-              <img
-                src={URL.createObjectURL(profilePhoto)}
-                alt="Profile"
-                className="profile-photo-preview"
-              />
-            ) : (
-              <>
-              <div className="profile-photo-placeholder">
-                <span className="plus-icon">+</span>
-              </div>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleProfilePhotoChange}
-                className="profile-photo-input"
-              />
-              </>
-            )}
+                <img
+                  src={URL.createObjectURL(profilePhoto)}
+                  alt="Profile"
+                  className="profile-photo-preview"
+                />
+              ) : (
+                <>
+                  <div className="profile-photo-placeholder">
+                    <span className="plus-icon">+</span>
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleProfilePhotoChange}
+                    className="profile-photo-input"
+                  />
+                </>
+              )}
             </label>
           </div>
           <label>
@@ -173,6 +230,7 @@ const ProfileSetupForm = () => {
             />
           </label>
         </div>
+
         <div className="form-section">
           <label>
             Categories:
@@ -194,6 +252,15 @@ const ProfileSetupForm = () => {
                       type="text"
                       name="foodName"
                       value={vegetarianFoodDetails.foodName}
+                      onChange={(e) => handleFoodDetailsChange('vegetarian', e)}
+                    />
+                  </label>
+                  <label>
+                    Food Menu:
+                    <input
+                      type="text"
+                      name="foodMenu"
+                      value={vegetarianFoodDetails.foodMenu}
                       onChange={(e) => handleFoodDetailsChange('vegetarian', e)}
                     />
                   </label>
@@ -232,6 +299,16 @@ const ProfileSetupForm = () => {
                     />
                   </label>
                   <label>
+                    Food Menu:
+                    <input
+                      type="text"
+                      name="foodMenu"
+                      value={jainFoodDetails.foodMenu}
+                      onChange={(e) => handleFoodDetailsChange('jain', e)}
+                    />
+                  </label>
+
+                  <label>
                     Food Price:
                     <input
                       type="text"
@@ -266,6 +343,15 @@ const ProfileSetupForm = () => {
                     />
                   </label>
                   <label>
+                    Food Menu:
+                    <input
+                      type="text"
+                      name="foodMenu"
+                      value={nonVegetarianFoodDetails.foodMenu}
+                      onChange={(e) => handleFoodDetailsChange('non-vegetarian', e)}
+                    />
+                  </label>
+                  <label>
                     Food Price:
                     <input
                       type="text"
@@ -280,9 +366,7 @@ const ProfileSetupForm = () => {
 
           </label>
         </div>
-        <Link to="/dashboard">
-          <button type="submit">Submit</button>
-        </Link>
+        <button type="submit">Submit</button>
 
       </form>
     </div>
