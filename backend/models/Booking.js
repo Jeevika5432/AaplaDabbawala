@@ -17,6 +17,10 @@ const BookingSchema = new mongoose.Schema(
       enum: ["one-time", "monthly"],
       required: true,
     },
+    quantity:{
+      type:Number,
+      required:true
+    },
     prices: {
       type: Number,
       required: true,

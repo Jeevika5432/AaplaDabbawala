@@ -1,15 +1,15 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 
 const app = express();
 const port = 8801;
 
-
+import bodyParser from 'body-parser';
 import qrcode from "qrcode-terminal";
 import WhatsAppWeb from "whatsapp-web.js";
 import axios from "axios";
 import PDFDocument from "pdfkit";
 import fs from "fs";
+import {stringify} from 'csv-stringify';
 
 const { Client, LocalAuth, MessageMedia } = WhatsAppWeb; // Access the necessary components
 
@@ -46,7 +46,7 @@ client.on("disconnected", (reason) => {
 app.use(bodyParser.json());
 
 // chat notification
-app.post('/api/booking-notification', async(req, res) => {
+app.post('/api/booking-notification', async (req, res) => {
    const { phoneNumber, message } = req.body;
 
    if (!phoneNumber || !message) {
@@ -63,7 +63,6 @@ app.post('/api/booking-notification', async(req, res) => {
       res.status(500).json({ error: 'Internal server error.' });
    }
 });
-
 
 
 async function bookingNotification(phoneNumber, message) {
@@ -100,53 +99,58 @@ async function convertDataToPDF(data) {
    pdfDoc.end();
 }
 
+// Function to convert JSON data to CSV
+async function convertDataToCSVAndSaveLocally(data) {
+   const csvStream = stringify({ header: true });
+   const outputStream = fs.createWriteStream("output.csv");
+
+   csvStream.pipe(outputStream);
+
+   data.forEach(item => {
+      csvStream.write(item);
+   });
+
+   csvStream.end();
+}
+
 
 //Replying Messages
 client.on("message", async (message) => {
    const chatId = message.from;
-   const text = message.body;
+   const text = message.body.toLowerCase();
    console.log(chatId, text);
 
-   if (message.body.toLowerCase() === "hello") {
+   if (text === "hello") {
       client.sendMessage(chatId, "message is");
    }
 
-   if (message.body.toLowerCase() === "hi") {
+   else if (text === "hi") {
       message.reply("Hiiiii");
    }
 
-   if (message.body.toLowerCase() === "see details") {
+   else if (text === "see orders") {
       try {
          // Fetch data from the server API
          const response = await axios.get("http://localhost:8800/api/contact");
          const data = response.data;
 
-         // Create a PDF
-         await convertDataToPDF(data);
+         // Convert data to CSV and save it locally
+         await convertDataToCSVAndSaveLocally(data);
 
-         // Send the PDF as a media message
-         const pdfMedia = MessageMedia.fromFilePath("D:/zbot/data.pdf");
-         client.sendMessage(message.from, pdfMedia, {
-            caption: "Data Details",
+         // Send the CSV as a media message
+         const csvMedia = MessageMedia.fromFilePath("D:/DabbaWala/zdabbawala/output.csv");
+         client.sendMessage(message.from, csvMedia, {
+            caption: "Order Details (CSV)",
          });
+         
+         // Delete the CSV file from local storage
+         // fs.unlinkSync("D:/DabbaWala/zdabbawala/output.csv");
       } catch (error) {
          console.error("Error fetching or sending data:", error);
-         message.reply("An error occurred while fetching data or generating PDF.");
+         message.reply("An error occurred while fetching data or generating CSV.");
       }
    }
 
-
-   else if (message.body.toLowerCase() === "meme") {
-      //get media from url
-      let media = await MessageMedia.fromUrl(
-         "https://todaysparent.mblycdn.com/tp/resized/2017/06/767x431/when-your-kid-becomes-a-meme.jpg"
-      );
-
-      //replying with media
-      client.sendMessage(message.from, media, {
-         caption: "meme",
-      });
-   }
 });
 
 // connection

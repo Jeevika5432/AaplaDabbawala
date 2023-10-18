@@ -29,11 +29,10 @@ const DabbawalaSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    profilePicture: {
-      type: String,
-      required: true,
-    },
     aadharCardPublicUrl: {
+      type: String,
+    },
+    profilePicture: {
       type: String,
     },
     profilePicturePublicUrl: {
@@ -51,18 +50,29 @@ const DabbawalaSchema = new mongoose.Schema(
       // You can structure this object according to your requirements
     },
     prices: {
-      simpleThaali: Number,
-      deluxThaali: Number,
-      maharajaThaali: Number,
+      "veg" :{
+        simpleThaali: Number,
+        deluxThaali: Number,
+        maharajaThaali: Number,
+      },
+      "jain" :{
+        simpleThaali: Number,
+        deluxThaali: Number,
+        maharajaThaali: Number,
+      },
+      "non-veg" :{
+        simpleThaali: Number,
+        deluxThaali: Number,
+        maharajaThaali: Number,
+      }
     },
     foodMenu: {
       type: String,
       required: true,
     },
-    category: {
+    mealType: {
       type: String,
-      enum: ["jain", "veg", "non veg"],
-      required: true,
+      enum: ["jain", "veg", "non-veg"],
     },
 
     reviews: {
