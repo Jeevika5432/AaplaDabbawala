@@ -6,6 +6,18 @@ const reviewSchema = new mongoose.Schema({
   rating: Number,
 });
 
+// veg, nonveg, jain
+const dabbaSchema = new mongoose.Schema({
+  isPresent: {
+    type: Boolean,
+    default: false
+  },
+  name: String,
+  menu: String,
+  price: Number,
+});
+
+
 const DabbawalaSchema = new mongoose.Schema(
   {
     email: {
@@ -21,10 +33,6 @@ const DabbawalaSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    phoneNumber: {
-      type: String,
-      required: true
-    },
     aadharCard: {
       type: String,
       required: true,
@@ -32,6 +40,8 @@ const DabbawalaSchema = new mongoose.Schema(
     aadharCardPublicUrl: {
       type: String,
     },
+
+    // profiles
     profilePicture: {
       type: String,
     },
@@ -39,40 +49,38 @@ const DabbawalaSchema = new mongoose.Schema(
       type: String,
     },
 
-    locations:{
+    locations: {
       type: [String],
-      default:[]
+      default: []
+    },
+    phone: {
+      type: String,
     },
 
-    dabbaDetails: {
+    // timing n all
+    dailySchedule: {
       type: String,
-      // Define the fields for dabba details
-      // You can structure this object according to your requirements
     },
-    prices: {
-      "veg" :{
-        simpleThaali: Number,
-        deluxThaali: Number,
-        maharajaThaali: Number,
-      },
-      "jain" :{
-        simpleThaali: Number,
-        deluxThaali: Number,
-        maharajaThaali: Number,
-      },
-      "non-veg" :{
-        simpleThaali: Number,
-        deluxThaali: Number,
-        maharajaThaali: Number,
-      }
-    },
-    foodMenu: {
+
+    dabbawalaDetails: {
       type: String,
-      required: true,
     },
-    mealType: {
+
+    mealTypes: {
       type: String,
-      enum: ["jain", "veg", "non-veg"],
+      enum: ["jain", "veg", "nonVeg"],
+    },
+
+    jain:{
+      type: dabbaSchema
+    },
+
+    veg:{
+      type: dabbaSchema
+    },
+
+    nonVeg:{
+      type: dabbaSchema
     },
 
     reviews: {
@@ -82,7 +90,7 @@ const DabbawalaSchema = new mongoose.Schema(
     rating: {
       type: String,
       default: "5/5"
-    },
+    }
   },
   { timestamps: true }
 );
