@@ -23,7 +23,7 @@ router.put("/", upload.single('profilePicture'), updateDabbawala);
 router.post("/addreview", addReview);
 
 //get
-router.get("/find/:id", getDabbawala);
+router.post("/find/:userId", getDabbawala);
 
 //get all
 router.post("/all", getDabbawalas);

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import data from "../../db.json";
-import { Link, useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import PaymentForm from "./PaymentForm";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
+// Custom StarRating component
 function StarRating({ rating }) {
-  const starRating = rating ? `${rating}/5` : "4/5";
+  const starRating = rating ? `${rating}` : "4.3/5";
 
   const starRatingStyle = {
-    fontSize: "1.3rem", // Adjust the font size as needed
-    color: "yellow", // Set the color to yellow
+    fontSize: "1.3rem",
+    color: "yellow",
   };
 
   return (
@@ -17,29 +16,36 @@ function StarRating({ rating }) {
   );
 }
 
-
 export default function SingleProduct() {
   const [singleProduct, setSingleProduct] = useState({});
-  const { name } = useParams();
+  const { userId } = useParams();
+  const filterCriteria = JSON.parse(localStorage.getItem('searchData'));
+
   const navigate = useNavigate();
 
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
-  const [userRating, setUserRating] = useState(0); // Initialize user rating to 0
+  const [userRating, setUserRating] = useState(0);
+
+
+  const fetchDabba = async () => {
+    try {
+      console.log(userId)
+      const response = await axios.post(`http://localhost:8800/api/dabbawala/find/${userId}`);
+      setSingleProduct(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const findProduct = () => {
-      const newProduct = data.products.find((product) => product.name === name);
-      setSingleProduct(newProduct);
-    };
-
-    findProduct();
-  }, [name]);
+    fetchDabba();
+  }, []);
 
   const addComment = (commentText, rating) => {
     setComments([...comments, { text: commentText, rating }]);
-    setComment(""); // Clear the comment input
-    setUserRating(0); // Reset the user rating
+    setComment("");
+    setUserRating(0);
   };
 
   const deleteComment = (index) => {
@@ -60,35 +66,37 @@ export default function SingleProduct() {
     return stars;
   };
 
+  if (!singleProduct || !singleProduct[filterCriteria.category]) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <section className="xl:max-w-6xl xl:mx-auto py-10 lg:py-20 p-5">
-        <img src={singleProduct.large} alt={name} className="w-full h-auto pt-4" />
+        <img src={singleProduct.profilePicture} alt={singleProduct.name} className="w-full h-auto pt-4" />
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           <div>
             <h1 className="text-3xl lg:text-4xl xl:text-5xl text-white font-bold mb-4 lg:mb-8">
-              {name}
+              {singleProduct.name}
             </h1>
             <p className="text-slate-100 text-white font">
-                <strong>Food Name:</strong> {singleProduct.foodname}
-              </p>
+              <strong>Food Name:</strong> {singleProduct[filterCriteria.category].name}
+            </p>
             <p className="text-slate-100 mb-2">
               <strong>Menu:</strong>
             </p>
-            {singleProduct.desc &&
-              singleProduct.desc.split("\n").map((line, index) => (
+            {singleProduct[filterCriteria.category].menu &&
+              singleProduct[filterCriteria.category].menu.split("\n").map((line, index) => (
                 <p key={index} className="text-slate-300 mb-2">
                   {line}
                 </p>
-              ))
-            }
-              
+              ))}
             <div className="mt-3">
               <p className="text-slate-100 text-white font">
-                <strong>Location:</strong> {singleProduct.location}
+                <strong>Location:</strong> {singleProduct.locations.join(", ")}
               </p>
               <p className="text-slate-100 text-white font">
-                <strong>Pricing:</strong> {singleProduct.Pricing}
+                <strong>Pricing:</strong> {singleProduct[filterCriteria.category].price}
               </p>
               <p className="text-slate-100 text-white font">
                 <strong>Rating:</strong> <StarRating rating={singleProduct.rating} />
@@ -169,7 +177,7 @@ export default function SingleProduct() {
         </div>
         <ul className="flex items-center justify-end mt-5">
           <li>
-            <Link to="/fetch-products" className="text-slate-200 hover:text-white">
+            <Link to="/fetch-products" className="text-slate-200 hover-text-white">
               &larr; Back
             </Link>
           </li>

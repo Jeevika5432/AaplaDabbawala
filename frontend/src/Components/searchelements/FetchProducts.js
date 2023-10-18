@@ -87,7 +87,7 @@ export default function FetchProducts() {
                 <strong>Pricing:</strong> {item[filterCriteria.category].price}
               </p>
               <div className="flex items-center justify-between">
-                <Link to={`/${item.name}`} className="border-2 border-white black py-2 px-4 text-white">
+                <Link to={`/fetch-products/${item._id}`} className="border-2 border-white black py-2 px-4 text-white">
                   More Details
                 </Link>
                 <StarRating rating={item.rating} />

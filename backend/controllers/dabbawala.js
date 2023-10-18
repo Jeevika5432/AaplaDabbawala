@@ -115,10 +115,11 @@ export const getDabbawalas = async (req, res) => {
 }
 
 export const getDabbawala = async (req, res) => {
-  const { dabbawalaId } = req.params.id;
+  const { userId } = req.params;
+  console.log(userId)
 
   try {
-    const dabbawala = await Dabbawala.findById(dabbawalaId);
+    const dabbawala = await Dabbawala.findById(userId);
 
     if (!dabbawala) {
       return res.status(404).json({ message: 'Dabbawala not found' });
