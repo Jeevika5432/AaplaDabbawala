@@ -1,0 +1,40 @@
+.cardsContainers {
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.menu {
+    color: #feffef;
+    margin: 2.5rem 0rem;
+    /* margin-top: 0rem; */
+    position: relative;
+}
+
+.menu::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: -400px;
+    background-color: #feffef;
+    width: 350px;
+    height: 3px;
+}
+
+.menu::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: -400px;
+    background-color: #feffef;
+    width: 350px;
+    height: 3px;
+}
+
+.cards {
+    display: flex;
+    align-items: center;
+}
