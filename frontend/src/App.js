@@ -7,7 +7,7 @@ import Footer from "./Components/footer/Footer";
 import FavouriteDabba from "./pages/FavouriteDabba/FavouriteDabba";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import Login from "../src/pages/login/Login";
-import FormsPage from "./pages/dabbawala/FormsPage"
+import FormsPage from "./pages/dabbawala/FormsPage";
 import DashboardPage from "./pages/dabbawala/DashboardPage";
 import ServicePage from "./pages/services/ServicePage";
 import FetchProducts from "./Components/searchelements/FetchProducts";
@@ -16,7 +16,7 @@ import SingleProduct from "./Components/searchelements/SingleProduct";
 import ScrollToTop from "./Components/searchelements/ScrollToTop";
 import PaymentForm from "./Components/searchelements/PaymentForm";
 import Logindabba from "./pages/Logindabba/Logindabba.js";
-
+import Bookings from "./Components/Mybookings/Bookings";
 import { UserProvider } from "./context/UserContext";
 import { DabbaProvider } from "./context/DabbaContext";
 
@@ -43,6 +43,11 @@ function App() {
                                 element={<FavouriteDabba />}
                             />
                             <Route
+                                exact
+                                path="/MyBookings"
+                                element={<Bookings />}
+                            />
+                            <Route
                                 path="/fetch-products"
                                 element={<FetchProducts />}
                             ></Route>
@@ -58,7 +63,7 @@ function App() {
                             <Route path="/login" element={<Login />} />
                             <Route
                                 path="/dabbawalaform"
-                                element={<FormsPage/>}
+                                element={<FormsPage />}
                             />
                             <Route path="/service" element={<ServicePage />} />
                             <Route
