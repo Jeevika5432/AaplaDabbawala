@@ -7,10 +7,21 @@ import OrdersSection from '../../Components/dashboard/OrdersSection';
 import DabbawalaFeedback from '../../Components/dashboard/DabbawalaFeedback';
 import './DashboardPage.css'; // Import CSS file for styling
 
+import { DabbaContext } from "../../context/DabbaContext";
+import { useContext } from "react";
+
 const DashboardPage = () => {
+  const {
+    isLoggedInD,
+    dabbaa,
+    setDabbaa,
+    checkDabbaLoggedIn,
+    handleLogout2,
+  } = useContext(DabbaContext);
+
   return (
     <div className="dashboard-container">
-      <h1 className="dashboard-header">Welcome Sarah to your Dashboard!</h1>
+      <h1 className="dashboard-header">Welcome {dabbaa.name ? dabbaa.name : "Unknown"} to your Dashboard!</h1>
       <div className="dashboard-containers">
         <div className="profile-info-container">
           <ProfileInfo />

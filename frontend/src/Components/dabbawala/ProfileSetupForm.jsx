@@ -128,7 +128,9 @@ const ProfileSetupForm = () => {
     try {
       const response = await axios.put('http://localhost:8800/api/dabbawala/', formData);
       console.log(response.data);
-      checkDabbaLoggedIn();
+      localStorage.setItem('dabbawalaData', JSON.stringify(response.data));
+
+      await checkDabbaLoggedIn();
       navigate('/dashboard');
     } catch (error) {
       console.error(error);

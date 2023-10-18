@@ -1,27 +1,34 @@
-// ProfileInfo.jsx
-
-import React from 'react';
-import ProfileDetails from './ProfileDetails'; // Import the ProfileDetails component
+import React, { useEffect } from 'react';
+import ProfileDetails from './ProfileDetails';
 import './ProfileInfo.css';
 
+import { DabbaContext } from '../../context/DabbaContext';
+import { useContext } from 'react';
+
 const ProfileInfo = () => {
- 
-const profileData = {
-    name: 'Sarah Khan',
-    locations: ['Dadar', 'Mahim', 'Mumbai Central'],
-    contactNumber: '1234567890',
-    dailySchedule: 'Mon-Fri: 9 AM - 5 PM',
-    categories: ['vegetarian', 'jain'],
-    // ... other profile details
+  const { isLoggedInD, checkDabbaLoggedIn, handleLogout2 } = useContext(DabbaContext);
+
+  // Directly access the Dabbawala data from localStorage
+  const storedDabbawalaData = localStorage.getItem('dabbawalaData');
+  const dabbaa = JSON.parse(storedDabbawalaData) || {}; // Parse the data or set to an empty object if it doesn't exist
+
+  const profileData = {
+    name: dabbaa.name,
+    locations: dabbaa.locations,
+    contactNumber: dabbaa.phone,
+    dailySchedule: dabbaa.dailySchedule,
+    jain: dabbaa.jain,
+    veg: dabbaa.veg,
+    nonVeg: dabbaa.nonVeg,
   };
-       return (
-              <>
-         <h2>Your Profile</h2>
-    <div className="profile-info">
-     
-      <ProfileDetails {...profileData} /> {/* Pass the profileData to ProfileDetails component */}
-                     </div>
-                     </>
+
+  return (
+    <>
+      <h2>Your Profile</h2>
+      <div className="profile-info">
+        <ProfileDetails {...profileData} />
+      </div>
+    </>
   );
 };
 

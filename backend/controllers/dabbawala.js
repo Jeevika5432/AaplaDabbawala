@@ -37,6 +37,57 @@ export const updateDabbawala = async (req, res, next) => {
 };
 
 
+export const addReview = async (req, res, next) => {
+  try {
+    const { userId,userName, content, rating } = req.body;
+
+    const dabbawala = await Dabbawala.findById(userId);
+
+    if (!dabbawala) {
+      return res.status(404).json({ message: 'dabbawala not found' });
+    }
+
+    const newReview = {
+      userName,
+      content,
+      rating,
+    };
+
+    dabbawala.reviews.push(newReview);
+
+    // Calculate the new average rating for the hotel based on the appended review
+    const totalReviews = dabbawala.reviews.length;
+    const totalRating = dabbawala.reviews.reduce((sum, review) => sum + review.rating, 0);
+    const updatedRating = (totalRating / totalReviews).toFixed(1);
+    dabbawala.rating = `${updatedRating} /5`;
+
+    await dabbawala.save();
+
+    res.status(200).json({ message: 'Review added successfully', dabbawala });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getDabbawalaReviews = async (req, res, next) => {
+  try {
+    const userId = req.body.userId;
+
+    const dabbawala = await Dabbawala.findById(userId);
+
+    if (!dabbawala) {
+      return res.status(404).json({ message: 'Dabbawala not found' });
+    }
+
+    // Send the Dabbawala's reviews as the response
+    res.status(200).json(dabbawala.reviews);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
 
 export const getDabbawala = async (req, res, next) => {
   try {

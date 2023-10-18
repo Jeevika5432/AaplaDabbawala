@@ -7,7 +7,6 @@ const DabbawalaFeedback = () => {
   const feedbacks = [
     { user: 'Amisha', rating: 4, comment: 'Great service!' },
     { user: 'Jeevika', rating: 5, comment: 'Amazing food quality!' },
-    // Add more feedback objects as needed
   ];
 
   return (

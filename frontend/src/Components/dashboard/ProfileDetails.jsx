@@ -3,7 +3,7 @@
 import React from 'react';
 import './ProfileDeets.css';
 
-const ProfileDetails = ({ name, locations, contactNumber, dailySchedule, categories }) => {
+const ProfileDetails = ({ name, locations, contactNumber, dailySchedule, jain, veg, nonVeg }) => {
   return (
     <div className="profile-details-container">
       <div className="profile-details">
@@ -32,9 +32,9 @@ const ProfileDetails = ({ name, locations, contactNumber, dailySchedule, categor
             <strong>Categories:</strong>
           </label>
           <ul>
-            <li>Vegetarian: {categories.includes('vegetarian') ? 'Yes' : 'No'}</li>
-            <li>Jain: {categories.includes('jain') ? 'Yes' : 'No'}</li>
-            <li>Non-Vegetarian: {categories.includes('non-vegetarian') ? 'Yes' : 'No'}</li>
+            <li>Vegetarian: {(veg ? veg.isPresent : false) ? 'Yes' : 'No'}</li>
+            <li>Jain: {(jain ? jain.isPresent : false) ? 'Yes' : 'No'}</li>
+            <li>Non-Vegetarian: {(nonVeg ? nonVeg.isPresent : false) ? 'Yes' : 'No'}</li>
           </ul>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import express from "express";
-import { getDabbawala, getDabbawalas, updateDabbawala } from "../controllers/dabbawala.js";
+import { getDabbawala, getDabbawalas, updateDabbawala, addReview } from "../controllers/dabbawala.js";
 import multer from 'multer';
 
 const storage = multer.diskStorage({
@@ -20,6 +20,8 @@ const router = express.Router();
 // update
 // router.put("/", updateDabbawala);
 router.put("/",upload.single('profilePicture'), updateDabbawala);
+
+router.post("/addreview", addReview);
 
 
 //get
