@@ -7,7 +7,7 @@ import Footer from "./Components/footer/Footer";
 import FavouriteDabba from "./pages/FavouriteDabba/FavouriteDabba";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import Login from "../src/pages/login/Login";
-import FormsPage from "./pages/dabbawala/FormsPage";
+import FormsPage from "./pages/dabbawala/FormsPage"
 import DashboardPage from "./pages/dabbawala/DashboardPage";
 import ServicePage from "./pages/services/ServicePage";
 import FetchProducts from "./Components/searchelements/FetchProducts";
@@ -57,8 +57,8 @@ function App() {
                             />
                             <Route path="/login" element={<Login />} />
                             <Route
-                                path="/"
-                                element={<FormsPage />}
+                                path="/dabbawalaform"
+                                element={<FormsPage/>}
                             />
                             <Route path="/service" element={<ServicePage />} />
                             <Route

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ProfileSetupForm.css'; 
+import './ProfileSetupForm.css';
 import { Link } from 'react-router-dom';
 
 
@@ -82,10 +82,10 @@ const ProfileSetupForm = () => {
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
-         <div className="form-section">
-         <div className="profile-photo-section">
-          <label className="profile-photo-label">
-            {profilePhoto ? (
+        <div className="form-section">
+          <div className="profile-photo-section">
+            <label className="profile-photo-label">
+              {profilePhoto ? (
               <img
                 src={URL.createObjectURL(profilePhoto)}
                 alt="Profile"
@@ -93,19 +93,19 @@ const ProfileSetupForm = () => {
               />
             ) : (
               <>
-                <div className="profile-photo-placeholder">
-                  <span className="plus-icon">+</span>
-                </div>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleProfilePhotoChange}
-                  className="profile-photo-input"
-                />
+              <div className="profile-photo-placeholder">
+                <span className="plus-icon">+</span>
+              </div>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleProfilePhotoChange}
+                className="profile-photo-input"
+              />
               </>
             )}
-          </label>
-        </div>
+            </label>
+          </div>
           <label>
             Name:
             <input
@@ -117,7 +117,7 @@ const ProfileSetupForm = () => {
           </label>
         </div>
 
-          <div className="form-section">
+        <div className="form-section">
           <label>
             Locations:
             <div className="selected-locations-container">
@@ -161,7 +161,7 @@ const ProfileSetupForm = () => {
             />
           </label>
         </div>
-     
+
         <div className="form-section">
           <label>
             Daily Schedule:
@@ -211,78 +211,78 @@ const ProfileSetupForm = () => {
             </div>
             {/* Similar structure for Jain and Non-Vegetarian categories */}
             <div>
-  <label>
-    <input
-      type="checkbox"
-      value="jain"
-      checked={categories.includes('jain')}
-      onChange={() => handleCategoryChange('jain')}
-    />
-    Jain
-  </label>
-  {categories.includes('jain') && (
-    <div>
-      <label>
-        Food Name:
-        <input
-          type="text"
-          name="foodName"
-          value={jainFoodDetails.foodName}
-          onChange={(e) => handleFoodDetailsChange('jain', e)}
-        />
-      </label>
-      <label>
-        Food Price:
-        <input
-          type="text"
-          name="foodPrice"
-          value={jainFoodDetails.foodPrice}
-          onChange={(e) => handleFoodDetailsChange('jain', e)}
-        />
-      </label>
-    </div>
-  )}
-</div>
+              <label>
+                <input
+                  type="checkbox"
+                  value="jain"
+                  checked={categories.includes('jain')}
+                  onChange={() => handleCategoryChange('jain')}
+                />
+                Jain
+              </label>
+              {categories.includes('jain') && (
+                <div>
+                  <label>
+                    Food Name:
+                    <input
+                      type="text"
+                      name="foodName"
+                      value={jainFoodDetails.foodName}
+                      onChange={(e) => handleFoodDetailsChange('jain', e)}
+                    />
+                  </label>
+                  <label>
+                    Food Price:
+                    <input
+                      type="text"
+                      name="foodPrice"
+                      value={jainFoodDetails.foodPrice}
+                      onChange={(e) => handleFoodDetailsChange('jain', e)}
+                    />
+                  </label>
+                </div>
+              )}
+            </div>
 
-<div>
-  <label>
-    <input
-      type="checkbox"
-      value="non-vegetarian"
-      checked={categories.includes('non-vegetarian')}
-      onChange={() => handleCategoryChange('non-vegetarian')}
-    />
-    Non-Vegetarian
-  </label>
-  {categories.includes('non-vegetarian') && (
-    <div>
-      <label>
-        Food Name:
-        <input
-          type="text"
-          name="foodName"
-          value={nonVegetarianFoodDetails.foodName}
-          onChange={(e) => handleFoodDetailsChange('non-vegetarian', e)}
-        />
-      </label>
-      <label>
-        Food Price:
-        <input
-          type="text"
-          name="foodPrice"
-          value={nonVegetarianFoodDetails.foodPrice}
-          onChange={(e) => handleFoodDetailsChange('non-vegetarian', e)}
-        />
-      </label>
-    </div>
-  )}
-</div>
+            <div>
+              <label>
+                <input
+                  type="checkbox"
+                  value="non-vegetarian"
+                  checked={categories.includes('non-vegetarian')}
+                  onChange={() => handleCategoryChange('non-vegetarian')}
+                />
+                Non-Vegetarian
+              </label>
+              {categories.includes('non-vegetarian') && (
+                <div>
+                  <label>
+                    Food Name:
+                    <input
+                      type="text"
+                      name="foodName"
+                      value={nonVegetarianFoodDetails.foodName}
+                      onChange={(e) => handleFoodDetailsChange('non-vegetarian', e)}
+                    />
+                  </label>
+                  <label>
+                    Food Price:
+                    <input
+                      type="text"
+                      name="foodPrice"
+                      value={nonVegetarianFoodDetails.foodPrice}
+                      onChange={(e) => handleFoodDetailsChange('non-vegetarian', e)}
+                    />
+                  </label>
+                </div>
+              )}
+            </div>
 
           </label>
         </div>
         <Link to="/dashboard">
-  <button type="submit">Submit</button>
-</Link>
+          <button type="submit">Submit</button>
+        </Link>
 
       </form>
     </div>
