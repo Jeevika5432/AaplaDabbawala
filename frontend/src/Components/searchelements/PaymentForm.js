@@ -11,7 +11,7 @@ const PaymentForm = ({ onCancel }) => {
   const { isLoggedIn, userr, checkUserLoggedIn, handleLogout } = useContext(UserContext);
 
   const location = useLocation();
-  const {state} = location;
+  const { state } = location;
 
   const filterCriteria = JSON.parse(localStorage.getItem('searchData'));
   const currProduct = JSON.parse(localStorage.getItem('currProduct'));
@@ -30,7 +30,7 @@ const PaymentForm = ({ onCancel }) => {
 
     const prices = currProduct[filterCriteria.category].price;
     const foodName = currProduct[filterCriteria.category].name;
-  
+
     // Validate the form inputs here
     if (mealType && quantity && address && orderDate) {
       // Prepare the order data
@@ -43,19 +43,36 @@ const PaymentForm = ({ onCancel }) => {
         prices,
         mealType,
         address,
-        subscriptionStartDate : orderDate,
+        subscriptionStartDate: orderDate,
         // Add other fields as needed
       };
 
       console.log(orderData);
-      
-  
+
+
       try {
         // Send a POST request to your backend endpoint to create the order
         const response = await axios.post('http://localhost:8800/api/booking/create', orderData);
-        
+
         // Check the response status and handle it accordingly
         if (response.status === 201) {
+          const orderApi = "http://localhost:8800/api/payment/orders";
+          const { data } = await axios.post(
+            orderApi,
+            { amount: (prices*quantity) },
+            {
+              headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods":
+                  "POST, GET, OPTIONS, PUT, DELETE",
+                "Access-Control-Allow-Headers":
+                  "Content-Type, X-Auth-Token, Origin, Authorization",
+              },
+            }
+          );
+          console.log(data);
+          await initPayment(data.data);
+
           // Order was successfully created
           setOrderPlaced(true);
           // You can reset the form inputs here if needed
@@ -78,7 +95,75 @@ const PaymentForm = ({ onCancel }) => {
       window.alert('Please fill in all the required fields.');
     }
   };
-  
+
+
+  // const [premiumprice, setPremiumprice] = useState(350);
+  // const handlepayment = async () => {
+  //   try {
+  //     if (!isLoggedIn) {
+  //       alert("You are not logged in.");
+  //       return;
+  //       // return navigate("/login");
+  //     }
+
+  //     const orderApi = "http://localhost:8800/api/pay/orders";
+  //     const { data } = await axios.post(
+  //       orderApi,
+  //       { amount: premiumprice },
+  //       {
+  //         headers: {
+  //           "Access-Control-Allow-Origin": "*",
+  //           "Access-Control-Allow-Methods":
+  //             "POST, GET, OPTIONS, PUT, DELETE",
+  //           "Access-Control-Allow-Headers":
+  //             "Content-Type, X-Auth-Token, Origin, Authorization",
+  //         },
+  //       }
+  //     );
+  //     console.log(data);
+  //     initPayment(data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const initPayment = (data) => {
+    console.log("In init")
+    const options = {
+      key: "rzp_test_Uf8e5ZC0BrgIFH",
+      amount: data.amount,
+      currency: data.currency,
+      description: "Test Transaction",
+      order_id: data.id,
+      handler: async (response) => {
+        try {
+          const verifyApi = "http://localhost:8800/api/payment/verify";
+          const { data } = await axios.post(verifyApi, { ...response, userId: userr._id }, {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
+              'Access-Control-Allow-Headers': 'Content-Type, X-Auth-Token, Origin, Authorization',
+            },
+          });
+          console.log(data);
+          if (data.status) {
+            alert("Order Placed");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      theme: {
+        color: "#f57e42",
+      },
+    };
+
+    console.log(options)
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  };
+
+
   return (
     <div className="order-form">
       <div className="flex-container">
