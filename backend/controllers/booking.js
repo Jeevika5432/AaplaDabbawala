@@ -3,29 +3,33 @@ import Booking from "../models/Booking.js";
 
 export const createBooking = async (req, res, next) => {
   try {
-    const {
-      user,
-      dabbawala,
-      orderType,
-      prices,
-      address,
-      mealType,
-      oneTimeOrderDate,
-      subscriptionStartDate,
-      subscriptionEndDate,
-    } = req.body;
+    // const {
+    //   user,
+    //   dabbawala,
+    //   orderType,
+    //   quantity,
+    //   prices,
+    //   address,
+    //   mealType,
+    //   oneTimeOrderDate,
+    //   subscriptionStartDate,
+    //   subscriptionEndDate,
+    // } = req.body;
 
-    const booking = new Booking({
-      user,
-      dabbawala,
-      orderType,
-      prices,
-      address,
-      mealType,
-      oneTimeOrderDate,
-      subscriptionStartDate,
-      subscriptionEndDate,
-    });
+    // const booking = new Booking({
+    //   user,
+    //   dabbawala,
+    //   orderType,
+    //   quantity,
+    //   prices,
+    //   address,
+    //   mealType,
+    //   oneTimeOrderDate,
+    //   subscriptionStartDate,
+    //   subscriptionEndDate,
+    // });
+
+    const booking = new Booking(req.body);
 
     await booking.save();
 

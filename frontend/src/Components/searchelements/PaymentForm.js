@@ -13,9 +13,11 @@ const PaymentForm = ({ onCancel }) => {
   const location = useLocation();
   const {state} = location;
 
+  const filterCriteria = JSON.parse(localStorage.getItem('searchData'));
+  const currProduct = JSON.parse(localStorage.getItem('currProduct'));
 
-  const [foodName, setFoodName] = useState(""); // Change UID to Food Name
-  const [mealType, setMealType] = useState("Veg");
+  // const [foodName, setFoodName] = useState(""); // Change UID to Food Name
+  const [mealType, setMealType] = useState(filterCriteria.category);
   const [quantity, setQuantity] = useState("");
   const [address, setAddress] = useState("");
   const [orderDate, setOrderDate] = useState(""); // Add orderDate state
@@ -25,32 +27,39 @@ const PaymentForm = ({ onCancel }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const prices = currProduct[filterCriteria.category].price;
+    const foodName = currProduct[filterCriteria.category].name;
   
     // Validate the form inputs here
-    if (foodName && mealType && quantity && address && orderDate) {
+    if (mealType && quantity && address && orderDate) {
       // Prepare the order data
       const orderData = {
-        userId: state.userId, // Get userId from the state
-        dabbawalaId: state.dabbawalaId, // Get dabbawalaId from the state
+        user: userr._id, // Get userId from the state
+        dabbawala: state.userId, // Get dabbawalaId from the state
         orderType: state.frequency, // Get order type from the state
         foodName,
-        mealType,
         quantity,
+        prices,
+        mealType,
         address,
-        orderDate,
+        subscriptionStartDate : orderDate,
         // Add other fields as needed
       };
+
+      console.log(orderData);
+      
   
       try {
         // Send a POST request to your backend endpoint to create the order
-        const response = await axios.post('http://localhost:3000/api/booking/create', orderData);
-  
+        const response = await axios.post('http://localhost:8800/api/booking/create', orderData);
+        
         // Check the response status and handle it accordingly
         if (response.status === 201) {
           // Order was successfully created
           setOrderPlaced(true);
           // You can reset the form inputs here if needed
-          setFoodName('');
+          // setFoodName('');
           setMealType('Veg');
           setQuantity('');
           setAddress('');
@@ -78,14 +87,14 @@ const PaymentForm = ({ onCancel }) => {
         <div className="form-content">
           <h2 className="young">Place Your Order </h2>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="foodName">Food Name:</label> {/* Change UID to Food Name */}
+            {/* <label htmlFor="foodName">Food Name:</label>
             <input
               type="text"
-              id="foodName" // Change UID to Food Name
+              id="foodName"
               value={foodName}
               onChange={(e) => setFoodName(e.target.value)}
               required
-            />
+            /> */}
 
             <label htmlFor="mealType">Meal Type:</label>
             <select

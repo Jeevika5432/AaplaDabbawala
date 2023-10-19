@@ -12,9 +12,12 @@ const BookingSchema = new mongoose.Schema(
       ref: "Dabbawala",
       required: true,
     },
+    foodName:{
+      type: String,
+    },
     orderType: {
       type: String,
-      enum: ["one-time", "monthly"],
+      // enum: ["one-time", "monthly"],
       required: true,
     },
     quantity:{

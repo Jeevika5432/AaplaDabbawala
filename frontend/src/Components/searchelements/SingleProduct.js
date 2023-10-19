@@ -33,6 +33,7 @@ export default function SingleProduct() {
       console.log(userId)
       const response = await axios.post(`http://localhost:8800/api/dabbawala/find/${userId}`);
       setSingleProduct(response.data);
+      localStorage.setItem('currProduct', JSON.stringify(response.data));
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +70,7 @@ export default function SingleProduct() {
   if (!singleProduct || !singleProduct[filterCriteria.category]) {
     return <div>Loading...</div>;
   }
-
+  
   return (
     <>
       <section className="xl:max-w-6xl xl:mx-auto py-10 lg:py-20 p-5">
@@ -171,7 +172,7 @@ export default function SingleProduct() {
           <button
             className="bg-white text-slate-800 py-2 px-4"
             onClick={() => navigate("/payment-form",{
-              state: { userId, frequency:filterCriteria.frequency }
+              state: { userId, frequency:filterCriteria.frequency, prices:singleProduct[filterCriteria.category].price, foodName:singleProduct[filterCriteria.category].name }
             })}
           >
             Payment
