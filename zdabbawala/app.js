@@ -47,15 +47,16 @@ app.use(bodyParser.json());
 
 // chat notification
 app.post('/api/booking-notification', async (req, res) => {
-   const { phoneNumber, message } = req.body;
+   const { phoneNumber, orderDetails, orderDate, userPhone } = req.body;
+   console.log(req.body)
 
-   if (!phoneNumber || !message) {
-      return res.status(400).json({ error: 'Invalid request. Phone number and message are required.' });
+   if (!phoneNumber || !orderDetails || !orderDate || !userPhone) {
+      return res.status(400).json({ error: 'Invalid request. Phone number and details are required.' });
    }
 
    try {
       // 917021578746@c.us
-      await bookingNotification(phoneNumber, message);
+      await bookingNotification(phoneNumber, orderDetails, orderDate, userPhone);
 
       res.status(200).json({ success: true, message: 'Booking notification sent successfully.' });
    } catch (error) {
@@ -65,17 +66,16 @@ app.post('/api/booking-notification', async (req, res) => {
 });
 
 
-async function bookingNotification(phoneNumber, message) {
+async function bookingNotification(phoneNumber, orderDetails, orderDate, userPhone) {
    try {
-      // console.log(phoneNumber,message);
       const chatNum = `91${phoneNumber}@c.us`
-      await client.sendMessage(chatNum, message);
-      // console.log("done")
+      const textmsg = `You have a new order just now from a User, Number is : ${userPhone}, Order Date : ${orderDate} and details are : ${orderDetails}`
+      await client.sendMessage(chatNum, textmsg);
+      console.log("done")
    } catch (error) {
       console.error('Error sending WhatsApp message:', error);
    }
 }
-
 
 // Define the function to convert data to PDF
 async function convertDataToPDF(data) {

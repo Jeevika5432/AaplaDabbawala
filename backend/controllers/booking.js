@@ -1,45 +1,30 @@
 import Booking from "../models/Booking.js";
 // import axios from "axios";
+// import User from "../models/User.js"
+// import Dabbawala from "../models/Dabbawala.js";
 
 export const createBooking = async (req, res, next) => {
   try {
-    // const {
-    //   user,
-    //   dabbawala,
-    //   orderType,
-    //   quantity,
-    //   prices,
-    //   address,
-    //   mealType,
-    //   oneTimeOrderDate,
-    //   subscriptionStartDate,
-    //   subscriptionEndDate,
-    // } = req.body;
-
-    // const booking = new Booking({
-    //   user,
-    //   dabbawala,
-    //   orderType,
-    //   quantity,
-    //   prices,
-    //   address,
-    //   mealType,
-    //   oneTimeOrderDate,
-    //   subscriptionStartDate,
-    //   subscriptionEndDate,
-    // });
 
     const booking = new Booking(req.body);
 
     await booking.save();
+    console.log("1")
+
+
+    // // whatsapp notification alert
+    // const user = await User.findById(booking.user);
+    // const dabbawala = await Dabbawala.findById(booking.dabbawala);
 
     // const bookingData = {
-    //     phoneNumber: "dabbawala.phoneNumber",
-    //     orderDetails: "detaols",
-    //     message: User.email
+    //     phoneNumber: dabbawala.phone,
+    //     orderDetails: booking.mealType,
+    //     orderDate : booking.subscriptionStartDate,
+    //     userPhone: user.phone
     // };
+    // console.log(bookingData)
+
     // const resul = await axios.post('http://localhost:8801/api/booking-notification', bookingData);
-    // console.log(resul);
 
 
     res.status(201).json(booking);

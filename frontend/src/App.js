@@ -77,10 +77,10 @@ function App() {
                                 path="/logindabba"
                                 element={<Logindabba />}
                             />
-                                    <Route
+                            <Route
                                 path="/pricing"
                                 element={<PricingCard />}
-                            />
+                            />
                         </Routes>
                         <Footer />
                     </BrowserRouter>

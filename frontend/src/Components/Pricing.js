@@ -84,7 +84,7 @@ const PricingCard = () => {
             order_id: data.id,
             handler: async (response) => {
                 try {
-                    const verifyApi = "http://localhost:8800/api/pay/verify";
+                    const verifyApi = "http://localhost:8800/api/pay/verifyPremium";
                     const { data } = await axios.post(verifyApi, { ...response, userId: userr._id }, {
                         headers: {
                             'Access-Control-Allow-Origin': '*',

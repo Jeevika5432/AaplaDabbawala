@@ -1,0 +1,13 @@
+_id,name,email,message,createdAt,updatedAt,__v
+65171ec75dba26d2977a70a1,John Doe,johndoe@example.com,"Hello, this is a sample message.",2023-09-29T19:00:23.796Z,2023-09-29T19:00:23.796Z,0
+65171ed05dba26d2977a70a3,John Doe,dashkkjds@example.com,"Hello, this is a sample message.",2023-09-29T19:00:32.249Z,2023-09-29T19:00:32.249Z,0
+65171fca5dba26d2977a70a5,pika`);db.collection.drop();,dashkkjds@example.com,"Hello, this is a sample message.",2023-09-29T19:04:42.148Z,2023-09-29T19:04:42.148Z,0
+65171ff15dba26d2977a70a8,$db.collection.drop();,dashkkjds@example.com,"Hello, this is a sample message.",2023-09-29T19:05:21.392Z,2023-09-29T19:05:21.392Z,0
+651720035dba26d2977a70aa,$db.collection.drop(),dashkkjds@example.com,"Hello, this is a sample message.",2023-09-29T19:05:39.704Z,2023-09-29T19:05:39.704Z,0
+65180ab95dba26d2977a70ac,$db.contact.drop(),dashkkjds@example.com,"Hello, this is a sample message.",2023-09-30T11:47:05.105Z,2023-09-30T11:47:05.105Z,0
+65180ad95dba26d2977a70af,pika`);db.contact.drop();,dashkkjds@example.com,"Hello, this is a sample message.",2023-09-30T11:47:37.443Z,2023-09-30T11:47:37.443Z,0
+65180ae35dba26d2977a70b1,pika`);db.contacts.drop();,dashkkjds@example.com,"Hello, this is a sample message.",2023-09-30T11:47:47.948Z,2023-09-30T11:47:47.948Z,0
+65180b0f5dba26d2977a70b4,$db.contacts.drop();,dashkkjds@example.com,"Hello, this is a sample message.",2023-09-30T11:48:31.215Z,2023-09-30T11:48:31.215Z,0
+65180b4e5dba26d2977a70b6,$db.test.drop();,dashkkjds@example.com,"Hello, this is a sample message.",2023-09-30T11:49:34.937Z,2023-09-30T11:49:34.937Z,0
+65180c8f5dba26d2977a70b9,$db.test.drop();,dashkkjds@example.com,"Hello, this is a sample message.then(db.contacts.drop()) ",2023-09-30T11:54:55.367Z,2023-09-30T11:54:55.367Z,0
+65180c9f5dba26d2977a70bb,$db.test.drop();,dashkkjds@example.com,"Hello, this is a sample message`.then(db.contacts.drop())",2023-09-30T11:55:11.481Z,2023-09-30T11:55:11.481Z,0

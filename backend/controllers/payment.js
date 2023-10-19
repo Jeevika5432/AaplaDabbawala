@@ -43,6 +43,35 @@ export const verifyPayment = async (req, res) => {
 		if (razorpay_signature === expectedSign) {
 			// Payment verified successfully
 
+			return res.status(200).json({
+				message: "Payment verified successfully",
+				status: true,
+				razorpay_order_id,
+				razorpay_payment_id
+			});
+		} else {
+			return res.status(400).json({ message: "Invalid signature sent!", status: false });
+		}
+	} catch (error) {
+		res.status(500).json({ message: "Internal Server Error!" });
+		console.log(error);
+	}
+}
+
+export const verifyPremiumPayment = async (req, res) => {
+	try {
+		console.log(req.body);
+		const { razorpay_order_id, razorpay_payment_id, razorpay_signature, userId } =
+			req.body;
+		const sign = razorpay_order_id + "|" + razorpay_payment_id;
+		const expectedSign = crypto
+			.createHmac("sha256", process.env.KEY_SECRET)
+			.update(sign.toString())
+			.digest("hex");
+
+		if (razorpay_signature === expectedSign) {
+			// Payment verified successfully
+
 			// Find the user by their ID and update the 'isPremium' field
 			const updatedUser = await User.findByIdAndUpdate(userId, { isPremium: true }, { new: true });
 			console.log(updatedUser);
@@ -61,3 +90,4 @@ export const verifyPayment = async (req, res) => {
 		console.log(error);
 	}
 }
+

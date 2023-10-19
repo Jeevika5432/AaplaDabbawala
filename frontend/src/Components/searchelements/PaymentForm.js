@@ -97,36 +97,6 @@ const PaymentForm = ({ onCancel }) => {
   };
 
 
-  // const [premiumprice, setPremiumprice] = useState(350);
-  // const handlepayment = async () => {
-  //   try {
-  //     if (!isLoggedIn) {
-  //       alert("You are not logged in.");
-  //       return;
-  //       // return navigate("/login");
-  //     }
-
-  //     const orderApi = "http://localhost:8800/api/pay/orders";
-  //     const { data } = await axios.post(
-  //       orderApi,
-  //       { amount: premiumprice },
-  //       {
-  //         headers: {
-  //           "Access-Control-Allow-Origin": "*",
-  //           "Access-Control-Allow-Methods":
-  //             "POST, GET, OPTIONS, PUT, DELETE",
-  //           "Access-Control-Allow-Headers":
-  //             "Content-Type, X-Auth-Token, Origin, Authorization",
-  //         },
-  //       }
-  //     );
-  //     console.log(data);
-  //     initPayment(data.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const initPayment = (data) => {
     console.log("In init")
     const options = {
@@ -147,7 +117,7 @@ const PaymentForm = ({ onCancel }) => {
           });
           console.log(data);
           if (data.status) {
-            alert("Order Placed");
+            alert(`Order Placed, Razorpay order Id: ${data.razorpay_order_id}, Razorpay payment Id: ${data.razorpay_payment_id}`);
           }
         } catch (error) {
           console.log(error);
