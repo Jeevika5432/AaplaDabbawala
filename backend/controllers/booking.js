@@ -9,8 +9,7 @@ export const createBooking = async (req, res, next) => {
     const booking = new Booking(req.body);
 
     await booking.save();
-    console.log("1")
-
+    // console.log("1")
 
     // // whatsapp notification alert
     // const user = await User.findById(booking.user);
@@ -26,17 +25,28 @@ export const createBooking = async (req, res, next) => {
 
     // const resul = await axios.post('http://localhost:8801/api/booking-notification', bookingData);
 
-
     res.status(201).json(booking);
   } catch (err) {
     next(err);
   }
 };
 
+export const getBookings = async (req, res, next) => {
+  try {
+    const bookings = await Booking.find({});
+    res.status(200).json(bookings);
+  } catch (err) {
+    next(err);
+  }
+}
+
+
 export const getUserBookings = async (req, res, next) => {
   try {
-    const userId = req.params.userId;
+    const {userId} = req.params;
     const bookings = await Booking.find({ user: userId });
+    // const bookings = await Booking.find({ user: userId }).populate('dabbawala').populate('user');
+
     res.status(200).json(bookings);
   } catch (err) {
     next(err);
@@ -45,7 +55,8 @@ export const getUserBookings = async (req, res, next) => {
 
 export const getDabbawalaBookings = async (req, res, next) => {
   try {
-    const dabbawalaId = req.params.dabbawalaId;
+    const {dabbawalaId} = req.params;
+    console.log(dabbawalaId);
     const bookings = await Booking.find({ dabbawala: dabbawalaId });
     res.status(200).json(bookings);
   } catch (err) {

@@ -1,7 +1,7 @@
-// routes/booking.js
 import express from "express";
 import {
   createBooking,
+  getBookings,
   getUserBookings,
   getDabbawalaBookings,
 } from "../controllers/booking.js";
@@ -9,9 +9,10 @@ import {
 const router = express.Router();
 
 router.post("/create", createBooking);
+
+router.get("/allbookings", getBookings);
 router.get("/userbookings/:userId", getUserBookings);
 router.get("/dabbawalabookings/:dabbawalaId", getDabbawalaBookings);
 
-// Add more routes for bookings
 
 export default router;
