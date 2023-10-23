@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { UserContext } from '../../context/UserContext';
+import { useContext } from 'react';
+
 // Custom StarRating component
 function StarRating({ rating }) {
   const starRating = rating ? `${rating}` : "4.3/5";
@@ -17,6 +20,7 @@ function StarRating({ rating }) {
 }
 
 export default function SingleProduct() {
+  const { isLoggedIn, userr, checkUserLoggedIn, handleLogout } = useContext(UserContext);
   const [singleProduct, setSingleProduct] = useState({});
   const { userId } = useParams();
   const filterCriteria = JSON.parse(localStorage.getItem('searchData'));
@@ -33,6 +37,7 @@ export default function SingleProduct() {
       console.log(userId)
       const response = await axios.post(`http://localhost:8800/api/dabbawala/find/${userId}`);
       setSingleProduct(response.data);
+      setComments(response.data.reviews);
       localStorage.setItem('currProduct', JSON.stringify(response.data));
     } catch (error) {
       console.log(error);
@@ -43,11 +48,31 @@ export default function SingleProduct() {
     fetchDabba();
   }, []);
 
-  const addComment = (commentText, rating) => {
-    setComments([...comments, { text: commentText, rating }]);
-    setComment("");
-    setUserRating(0);
+
+  const addComment = async (commentText, rating) => {
+    try {
+      const formData = {
+        userId: userId,
+        userName: userr.name,
+        content: commentText,
+        rating: rating,
+      };
+
+      const response = await axios.post(`http://localhost:8800/api/dabbawala/addreview`, formData);
+
+      if (response.status === 200) {
+        // setComments([...comments, { text: commentText, rating }]);
+        fetchDabba();
+        setComment("");
+        setUserRating(0);
+      } else {
+        console.error("Error adding review");
+      }
+    } catch (error) {
+      console.error("Error adding review:", error);
+    }
   };
+
 
   const deleteComment = (index) => {
     const updatedComments = [...comments];
@@ -70,7 +95,7 @@ export default function SingleProduct() {
   if (!singleProduct || !singleProduct[filterCriteria.category]) {
     return <div>Loading...</div>;
   }
-  
+
   return (
     <>
       <section className="xl:max-w-6xl xl:mx-auto py-10 lg:py-20 p-5">
@@ -146,24 +171,32 @@ export default function SingleProduct() {
               </div>
               <h2 className="text-lg lg:text-xl text-white mt-4">Comments</h2>
               <ul>
-                {comments.map((comment, index) => (
-                  <li key={index} className="text-slate-300 mb-2">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        {comment.text}{" "}
-                        <span>
-                          Rating: {displayRating(comment.rating)}
-                        </span>
+                {
+                  comments ? comments.map((review, index) => (
+                    <li key={index} className="text-slate-300 mb-2">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <strong>{review.userName}{" : "}</strong>
+                          {review.content}{" "}
+                          <br/>
+                          <span>
+                            Rating: {displayRating(comment.rating)}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => deleteComment(index)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          &#10006;
+                        </button>
                       </div>
-                      <button
-                        onClick={() => deleteComment(index)}
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        &#10006;
-                      </button>
-                    </div>
-                  </li>
-                ))}
+                      <br/>
+                    </li>
+
+                  ))
+                    :
+                    <p>No reviews yet for this dabbawala</p>
+                }
               </ul>
             </div>
           </div>
@@ -171,8 +204,8 @@ export default function SingleProduct() {
         <div className="text-center my-5">
           <button
             className="bg-white text-slate-800 py-2 px-4"
-            onClick={() => navigate("/payment-form",{
-              state: { userId, frequency:filterCriteria.frequency, prices:singleProduct[filterCriteria.category].price, foodName:singleProduct[filterCriteria.category].name }
+            onClick={() => navigate("/payment-form", {
+              state: { userId, frequency: filterCriteria.frequency, prices: singleProduct[filterCriteria.category].price, foodName: singleProduct[filterCriteria.category].name }
             })}
           >
             Payment

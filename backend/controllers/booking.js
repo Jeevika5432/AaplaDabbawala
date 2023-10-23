@@ -1,7 +1,7 @@
 import Booking from "../models/Booking.js";
 // import axios from "axios";
 // import User from "../models/User.js"
-// import Dabbawala from "../models/Dabbawala.js";
+import Dabbawala from "../models/Dabbawala.js";
 
 export const createBooking = async (req, res, next) => {
   try {
@@ -43,7 +43,7 @@ export const getBookings = async (req, res, next) => {
 
 export const getUserBookings = async (req, res, next) => {
   try {
-    const {userId} = req.params;
+    const { userId } = req.params;
     const bookings = await Booking.find({ user: userId });
     // const bookings = await Booking.find({ user: userId }).populate('dabbawala').populate('user');
 
@@ -55,9 +55,28 @@ export const getUserBookings = async (req, res, next) => {
 
 export const getDabbawalaBookings = async (req, res, next) => {
   try {
-    const {dabbawalaId} = req.params;
+    const { dabbawalaId } = req.params;
     console.log(dabbawalaId);
     const bookings = await Booking.find({ dabbawala: dabbawalaId });
+    res.status(200).json(bookings);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getDabbawalaBookingsWp = async (req, res, next) => {
+  try {
+    const { phone } = req.params;
+
+    const dabbawala = await Dabbawala.findOne({ phone });
+
+    if (!dabbawala) {
+      return res.status(404).json({ message: 'Dabbawala not found' });
+    }
+    const dabbawalaId = dabbawala._id;
+
+    const bookings = await Booking.find({ dabbawala: dabbawalaId });
+
     res.status(200).json(bookings);
   } catch (err) {
     next(err);

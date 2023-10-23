@@ -9,7 +9,7 @@ import WhatsAppWeb from "whatsapp-web.js";
 import axios from "axios";
 import PDFDocument from "pdfkit";
 import fs from "fs";
-import {stringify} from 'csv-stringify';
+import { stringify } from 'csv-stringify';
 
 const { Client, LocalAuth, MessageMedia } = WhatsAppWeb; // Access the necessary components
 
@@ -102,7 +102,7 @@ async function convertDataToPDF(data) {
 // Function to convert JSON data to CSV
 async function convertDataToCSVAndSaveLocally(data) {
    const csvStream = stringify({ header: true });
-   const outputStream = fs.createWriteStream("output.csv");
+   const outputStream = fs.createWriteStream("orders.csv");
 
    csvStream.pipe(outputStream);
 
@@ -131,20 +131,22 @@ client.on("message", async (message) => {
    else if (text === "see orders") {
       try {
          // Fetch data from the server API
-         const response = await axios.get("http://localhost:8800/api/contact");
+         const number = chatId.substring(2, 12);
+         console.log(number)
+         const response = await axios.get(`http://localhost:8800/api/booking/bookingswp/${number}`);
          const data = response.data;
 
          // Convert data to CSV and save it locally
          await convertDataToCSVAndSaveLocally(data);
-
+         
          // Send the CSV as a media message
-         const csvMedia = MessageMedia.fromFilePath("D:/DabbaWala/zdabbawala/output.csv");
+         const csvMedia = MessageMedia.fromFilePath("D:/DabbaWala/zdabbawala/orders.csv");
          client.sendMessage(message.from, csvMedia, {
             caption: "Order Details (CSV)",
          });
-         
+
          // Delete the CSV file from local storage
-         // fs.unlinkSync("D:/DabbaWala/zdabbawala/output.csv");
+         // fs.unlinkSync("D:/DabbaWala/zdabbawala/orders.csv");
       } catch (error) {
          console.error("Error fetching or sending data:", error);
          message.reply("An error occurred while fetching data or generating CSV.");

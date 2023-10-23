@@ -1,5 +1,5 @@
 import express from "express";
-import { getDabbawala, getDabbawalas, updateDabbawala, addReview } from "../controllers/dabbawala.js";
+import { getDabbawala, getDabbawalas, updateDabbawala, addReview, getDabbawalaReviews } from "../controllers/dabbawala.js";
 import multer from 'multer';
 
 const storage = multer.diskStorage({
@@ -27,5 +27,7 @@ router.post("/find/:userId", getDabbawala);
 
 //get all
 router.post("/all", getDabbawalas);
+
+router.get("/dabbareviews/:userId", getDabbawalaReviews);
 
 export default router

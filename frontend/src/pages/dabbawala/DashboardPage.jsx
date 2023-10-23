@@ -28,7 +28,7 @@ const DashboardPage = () => {
         </div>
 
         <div className="notifications-container">
-          
+
           <NotificationsDabbawala />
         </div>
 
@@ -37,7 +37,7 @@ const DashboardPage = () => {
         </div>
 
         <div className="feedback-container">
-        
+
           <DabbawalaFeedback />
         </div>
       </div>

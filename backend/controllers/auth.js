@@ -20,14 +20,6 @@ export const register = async (req, res, next) => {
             password: hash,
         });
         await newUser.save();
-        // console.log(newUser);
-
-        // const bookingData = {
-        //     phoneNumber: "87986855",
-        //     message: newUser.email
-        // };
-        // const resul = await axios.post('http://localhost:8801/api/booking-notification', bookingData);
-        // console.log(resul);
 
         res.status(200).send("User has been created.");
     } catch (err) {

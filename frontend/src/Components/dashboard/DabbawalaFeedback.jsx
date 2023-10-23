@@ -1,28 +1,46 @@
-// DabbawalaFeedback.jsx
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './DabbawalaFeedback.css';
 
-import React from 'react';
-import './DabbawalaFeedback.css';  // Import CSS file for styling
+import { DabbaContext } from "../../context/DabbaContext";
+import { useContext } from "react";
 
 const DabbawalaFeedback = () => {
-  const feedbacks = [
-    { user: 'Amisha', rating: 4, comment: 'Great service!' },
-    { user: 'Jeevika', rating: 5, comment: 'Amazing food quality!' },
-  ];
+  const { isLoggedInD, dabbaa, setDabbaa, checkDabbaLoggedIn, handleLogout2 } = useContext(DabbaContext);
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetchReviews();
+  }, [dabbaa._id]);
+
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8800/api/dabbawala/dabbareviews/${dabbaa._id}`);
+      console.log(response.data);
+      if (response.status === 200) {
+        setReviews(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  };
+
 
   return (
     <div className="feedbacks-container">
       <h2>User Ratings and Reviews</h2>
-      {feedbacks.length === 0 ? (
+      {reviews.length === 0 ? (
         <p>No feedback available.</p>
       ) : (
         <ul className="feedback-list">
-          {feedbacks.map((feedback, index) => (
+          {reviews.map((review, index) => (
             <li key={index} className="feedback-item">
               <div className="user-info">
-                <strong>{feedback.user}</strong>
-                <span>Rating: {feedback.rating}</span>
+                <strong>{review.userName}</strong>
+                <span>Rating: {review.rating}</span>
               </div>
-              <p className="feedback-comment">{feedback.comment}</p>
+              <p className="feedback-comment">{review.content}</p>
             </li>
           ))}
         </ul>

@@ -10,13 +10,7 @@ import { useContext } from "react";
 
 const ProfileSetupForm = () => {
   const navigate = useNavigate();
-  const {
-    isLoggedInD,
-    dabbaa,
-    setDabbaa,
-    checkDabbaLoggedIn,
-    handleLogout2,
-  } = useContext(DabbaContext);
+  const { isLoggedInD, dabbaa, setDabbaa, checkDabbaLoggedIn, handleLogout2} = useContext(DabbaContext);
 
   // State variables to store form data
   const [name, setName] = useState('');
