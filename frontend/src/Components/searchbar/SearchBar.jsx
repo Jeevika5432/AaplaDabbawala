@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
   const [destination, setDestination] = useState("");
   const [category, setCategory] = useState("any");
-  const [frequency, setFrequency] = useState("one-time");
+  const [frequency, setFrequency] = useState("oneTime");
 
   const navigate = useNavigate();
 
@@ -66,7 +66,7 @@ const SearchBar = () => {
             className="frequencyDropdown"
           >
             <option value="monthly">Monthly Subscriptions</option>
-            <option value="one-time">One-Time Order</option>
+            <option value="oneTime">One-Time Order</option>
           </select>
         </div>
         <div className="headerSearchItem but">

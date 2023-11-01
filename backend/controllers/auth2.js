@@ -50,14 +50,14 @@ export const login = async (req, res, next) => {
          },
          process.env.JWT,
          {
-            expiresIn: "1h"
+            expiresIn: "4h"
          }
       );
 
       const { password, ...dabbawalaa } = dabbawala._doc;
 
       const option = {
-         expires: new Date(Date.now() + 1000 * 60 * 60 * 16),
+         expires: new Date(Date.now() + 1000 * 60 * 60 * 4),
          httpOnly: false
       }
 

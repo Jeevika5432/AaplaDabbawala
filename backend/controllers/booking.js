@@ -1,19 +1,22 @@
 import Booking from "../models/Booking.js";
-// import axios from "axios";
-// import User from "../models/User.js"
+import User from "../models/User.js"
 import Dabbawala from "../models/Dabbawala.js";
+// import axios from "axios";
 
 export const createBooking = async (req, res, next) => {
   try {
+    const book = req.body;
+    const user = await User.findById(book.user);
+    const dabbawala = await Dabbawala.findById(book.dabbawala);
 
-    const booking = new Booking(req.body);
-
+    const bookData = { user: user._id, dabbawala: dabbawala._id, userName: user.name, userPhone: user.phone, dabbawalaName: dabbawala.name, dabbawalaPhone: dabbawala.phone, ...book};
+    const booking = new Booking(bookData);
+    
     await booking.save();
+    // console.log(booking);
     // console.log("1")
 
     // // whatsapp notification alert
-    // const user = await User.findById(booking.user);
-    // const dabbawala = await Dabbawala.findById(booking.dabbawala);
 
     // const bookingData = {
     //     phoneNumber: dabbawala.phone,
@@ -44,8 +47,8 @@ export const getBookings = async (req, res, next) => {
 export const getUserBookings = async (req, res, next) => {
   try {
     const { userId } = req.params;
+    console.log(userId);
     const bookings = await Booking.find({ user: userId });
-    // const bookings = await Booking.find({ user: userId }).populate('dabbawala').populate('user');
 
     res.status(200).json(bookings);
   } catch (err) {
@@ -56,8 +59,11 @@ export const getUserBookings = async (req, res, next) => {
 export const getDabbawalaBookings = async (req, res, next) => {
   try {
     const { dabbawalaId } = req.params;
-    console.log(dabbawalaId);
-    const bookings = await Booking.find({ dabbawala: dabbawalaId });
+    // console.log(dabbawalaId);
+
+    const bookings = await Booking.find({ dabbawala: dabbawalaId }); // Use 'user' as the path to populate
+    console.log(bookings);
+
     res.status(200).json(bookings);
   } catch (err) {
     next(err);

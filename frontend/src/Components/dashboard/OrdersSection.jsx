@@ -1,59 +1,46 @@
-// OrdersSection.jsx
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './OrdersSection.css';
+import axios from 'axios';
+
+import { DabbaContext } from '../../context/DabbaContext';
+import { useContext } from 'react';
 
 const OrdersSection = () => {
-  // State to manage orders
-  const [ordersType, setOrdersType] = useState('subscription');
-  const [orders, setOrders] = useState({
-    jain: {
-      subscription: {
-        sunday: [
-                    { name: 'Amisha', category: 'Jain', time: '12:30 PM',address: '123 Main St, City'  },
-          // Add more orders as needed
-        ],
-        monday: [
-          { name: 'Jeevika', category: 'Jain', time: '1:00 PM', address: '456 Oak St, Town' },
-          // Add more orders as needed
-        ],
-        // Add more days as needed
-      },
-      oneTime: [
-        { name: 'Altaf', category: 'Jain', date: '2023-10-16', time: '12:30 PM', food: 'Food 3, Food 4',address: '789 Pine St, Village' },
-        { name: 'Mahima', category: 'Jain', date: '2023-10-16', time: '2:00 PM', food: 'Food 5, Food 6', address: '101 Cedar St, Hamlet' },
-        // Add more one-time orders as needed
-      ],
-    },
-    vegetarian: {
-      subscription: {
-        sunday: [
-          // Add subscription orders for the Vegetarian category on Sundays
-        ],
-        monday: [
-          // Add subscription orders for the Vegetarian category on Mondays
-        ],
-        // Add more days as needed
-      },
-      oneTime: [
-        // Add one-time orders for the Vegetarian category
-      ],
-    },
-    nonVegetarian: {
-      subscription: {
-        sunday: [
-          // Add subscription orders for the Non-Vegetarian category on Sundays
-        ],
-        monday: [
-          // Add subscription orders for the Non-Vegetarian category on Mondays
-        ],
-        // Add more days as needed
-      },
-      oneTime: [
-        // Add one-time orders for the Non-Vegetarian category
-      ],
-    },
-  });
+  const { isLoggedInD, dabbaa, setDabbaa, checkDabbaLoggedIn, handleLogout2 } = useContext(DabbaContext);
+
+  const [ordersType, setOrdersType] = useState('monthly');
+  const [orders, setOrders] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch orders based on the selected type (monthly or one-time)
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8800/api/booking/dabbawalabookings/${dabbaa._id}`);
+      setOrders(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    }
+  };
+
+  // Filter orders based on the selected type (monthly or one-time)
+  const filterOrders = () => {
+    if (ordersType === 'monthly') {
+      setFilteredOrders(orders.filter(order => order.orderType === 'monthly'));
+    } else {
+      setFilteredOrders(orders.filter(order => order.orderType === 'oneTime'));
+    }
+  };
+
+  useEffect(() => {
+    fetchOrders();
+    filterOrders();
+  }, [ordersType]);
+
+  useEffect(() => {
+    filterOrders();
+  }, [orders, ordersType]);
 
   const toggleOrdersType = (type) => {
     setOrdersType(type);
@@ -63,45 +50,33 @@ const OrdersSection = () => {
     <div className="orders-section">
       <h2>Your Orders</h2>
       <div className="orders-toggle">
-        <button onClick={() => toggleOrdersType('subscription')}>Subscription Orders</button>
+        <button onClick={() => toggleOrdersType('monthly')}>Subscription Orders</button>
         <button onClick={() => toggleOrdersType('oneTime')}>One-Time Orders</button>
       </div>
 
-      {/* Display orders based on the selected type */}
-      {ordersType === 'subscription' ? (
-        <>
-          {/* Display subscription orders for Jain category */}
-          {Object.entries(orders.jain.subscription).map(([day, orderList]) => (
-            <div key={day} className="orders-day">
-            <h3>{day}</h3>
-            <ul>
-              {orderList.map((order, index) => (
-                <li key={index} className="order-card subscription-order">
-                  <h3>{order.name}</h3>
-                  <p>Category: {order.category}</p>
-                            <p>Time: {order.time}</p>
-                            <p>Address: {order.address}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          ))}
-          {/* Similar structure for Vegetarian and Non-Vegetarian categories */}
-        </>
+      {loading ? (
+        <p>Loading...</p>
       ) : (
         <>
-          {/* Display one-time orders for Jain category */}
-          {orders.jain.oneTime.map((order, index) => (
-            <div key={index} className="order-card">
-              <h3>{order.name}</h3>
-              <p>Category: {order.category}</p>
-              <p>Date: {order.date}</p>
-              <p>Time: {order.time}</p>
-                        <p>Food: {order.food}</p>
-                        <p>Address: {order.address}</p>
+          {filteredOrders.map((order, index) => (
+            <div key={index} className={`order-card${order.orderType === 'monthly' ? ' subscription-order' : ''}`}>
+              <h3>{order.userName}</h3>
+              <p>Phone Number : {order.userPhone}</p>
+              <p>Category: {order.dabbawala}</p>
+              <p>Food: {order.foodName}</p>
+              {order.orderType === 'monthly' ? (
+                <>
+                  <p>Subscription Start Date: {order.subscriptionStartDate}</p>
+                </>
+              ) : (
+                <>
+                  <p>Order Date: {order.subscriptionStartDate}</p>
+                </>
+              )}
+              <p>Address: {order.address}</p>
+
             </div>
           ))}
-          {/* Similar structure for Vegetarian and Non-Vegetarian categories */}
         </>
       )}
     </div>

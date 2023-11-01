@@ -12,6 +12,18 @@ const BookingSchema = new mongoose.Schema(
       ref: "Dabbawala",
       required: true,
     },
+    userName: {
+      type: String,
+    },
+    userPhone:{
+      type:String
+    },
+    dabbawalaName: {
+      type: String,
+    },
+    dabbawalaPhone:{
+      type:String
+    },
     foodName:{
       type: String,
     },

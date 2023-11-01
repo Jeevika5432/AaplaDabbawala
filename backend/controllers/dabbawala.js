@@ -100,6 +100,7 @@ export const getDabbawalas = async (req, res) => {
   if (category) {
     filter[`${category}.isPresent`] = true;
   }
+  console.log(filter);
 
   try {
     const dabbawalas = await Dabbawala.find(filter);

@@ -25,11 +25,20 @@ const PaymentForm = ({ onCancel }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${day}-${month}-${year}`;
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const prices = currProduct[filterCriteria.category].price;
     const foodName = currProduct[filterCriteria.category].name;
+    const formattedOrderDate = formatDate(orderDate);
 
     // Validate the form inputs here
     if (mealType && quantity && address && orderDate) {
@@ -43,8 +52,7 @@ const PaymentForm = ({ onCancel }) => {
         prices,
         mealType,
         address,
-        subscriptionStartDate: orderDate,
-        // Add other fields as needed
+        subscriptionStartDate: formattedOrderDate,
       };
 
       console.log(orderData);
