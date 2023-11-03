@@ -34,5 +34,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  @apply bg-slate-900;
+  /* background-color: rgb(214, 178, 169); */
+  /* @apply bg-slate-900; */
+  background-image: url('./images/dabbawala11.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  backdrop-filter: blur(10px);
 }

@@ -61,13 +61,13 @@ export default function FetchProducts() {
         {items.map((item) => (
           <article
             key={item._id}
-            className={`grid grid-cols-1 gap-1 md:grid-cols-2 md:place-items-center lg:gap-10 xl:gap-20 ${item.desc ? "mb-5" : ""
-              }`}
+            className={`grid grid-cols-1 gap-1 md:grid-cols-2 md:place-items-center lg:gap-10 xl:gap-20 card-container shadow-md p-4 bg-black bg-opacity-50 rounded-lg ${item.desc ? "mb-5" : ""}`}
           >
             <div>
               <picture>
-                <source media="(min-width: 768px)" srcSet={item.profilePicture} />
-                <img src={item.profilePicture} alt={item.name} />
+                <source media="(min-width: 1200px)" srcSet={item.profilePicture} />
+                <img src={item.profilePicture} alt={item.name} style={{ width: "1200px", height: "auto" }} />
+                {/* Adjust the width and height values to increase the image size */}
               </picture>
             </div>
 
@@ -98,4 +98,4 @@ export default function FetchProducts() {
       </section>
     </>
   );
-}  
+}

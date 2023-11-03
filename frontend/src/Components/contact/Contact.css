@@ -2,7 +2,7 @@
 
 .contact-header {
   background-color: #b35959;
-  height: 30vh;
+ 
 }
 
 .contact-content {
@@ -10,13 +10,13 @@
 }
 
 .icon {
-  color: #24416B;
+  color: white;
 }
 
 .form input,
 .form textarea {
   padding: 10px 0;
-  border-bottom: 2px solid #c1c1c1;
+  border-bottom: 2px solid black;
   margin-bottom: 2.2rem;
   /* text-transform: capitalize; */
   transition: border-color 0.3s ease;
@@ -45,7 +45,11 @@
   text-align: center;
   margin: 40px auto;
 }
+.amisha-container{
+  background-color: white;
+  padding:20px;
 
+}
 .form ::placeholder {
   font-weight: bold;
 }
@@ -56,7 +60,7 @@
 }
 
 .form textarea {
-  border: 2px solid #c1c1c1;
+  border: 2px solid white;
   padding: 0.6rem !important;
   margin-bottom: 1rem;
 }
@@ -104,11 +108,24 @@
 
 
 /* Add some styles for the button */
-.ctn {
-  /* Your existing styles for the button */
-  /* ... */
-  position: relative;
-  overflow: hidden;
-}
 
 /* Add styles for the animation */
+.p
+{
+color:black;
+}
+
+.text{
+  color:white;
+  font-size: smaller;
+}
+.contact
+{
+  /* background-color: white; */
+  width:60%;
+  padding-top:5rem;
+  position: relative;
+  left:300px;
+  padding-left:5rem;
+  padding-bottom: 2rem;
+}
