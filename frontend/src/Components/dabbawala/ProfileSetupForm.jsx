@@ -10,7 +10,7 @@ import { useContext } from "react";
 
 const ProfileSetupForm = () => {
   const navigate = useNavigate();
-  const { isLoggedInD, dabbaa, setDabbaa, checkDabbaLoggedIn, handleLogout2} = useContext(DabbaContext);
+  const { isLoggedInD, dabbaa, setDabbaa, checkDabbaLoggedIn, handleLogout2 } = useContext(DabbaContext);
 
   // State variables to store form data
   const [name, setName] = useState('');
@@ -195,14 +195,14 @@ const ProfileSetupForm = () => {
                 placeholder="Type location..."
               />
               <button type="button" onClick={handleAddLocation} style={{
-    backgroundColor: 'red',
-    padding: '10px',
-    borderRadius: '10px',
-    color: 'white',
-    transition: 'background-color 0.3s',  // Adding a smooth transition effect
-  }}
-  onMouseOver={(e) => e.target.style.backgroundColor = 'darkred'}
-  onMouseOut={(e) => e.target.style.backgroundColor = 'red'}>
+                backgroundColor: 'red',
+                padding: '10px',
+                borderRadius: '10px',
+                color: 'white',
+                transition: 'background-color 0.3s',  // Adding a smooth transition effect
+              }}
+                onMouseOver={(e) => e.target.style.backgroundColor = 'darkred'}
+                onMouseOut={(e) => e.target.style.backgroundColor = 'red'}>
                 Add Location
               </button>
             </div>
@@ -370,17 +370,16 @@ const ProfileSetupForm = () => {
 
           </label>
         </div>
-        <Link to='../dashboard'>
-        <button type="submit"style={{
-    backgroundColor: 'red',
-    padding: '10px',
-    borderRadius: '10px',
-    color: 'white',
-    transition: 'background-color 0.3s',  // Adding a smooth transition effect
-  }}
-  onMouseOver={(e) => e.target.style.backgroundColor = 'darkred'}
-  onMouseOut={(e) => e.target.style.backgroundColor = 'red'}>Submit</button>
-</Link>
+
+        <button type="submit" style={{
+          backgroundColor: 'red',
+          padding: '10px',
+          borderRadius: '10px',
+          color: 'white',
+          transition: 'background-color 0.3s',  // Adding a smooth transition effect
+        }}
+          onMouseOver={(e) => e.target.style.backgroundColor = 'darkred'}
+          onMouseOut={(e) => e.target.style.backgroundColor = 'red'}>Submit</button>
       </form>
     </div>
   );
