@@ -1,20 +1,21 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=DM+Serif+Display&family=Oswald:wght@300&family=Playfair+Display:wght@400;600&family=Roboto+Slab&family=Young+Serif&display=swap');
 
+/* General styles */
+.header-title {
+  color: black;
+  font-family: 'Playfair Display', serif;
+  padding: 10px;
+}
 
+.header {
+  padding: 0;
+  height: 10vh;
+}
 
-.header-title
+.contact
 {
-color:black;
-font-family: 'Playfair Display', serif;
-padding: 10px;
-
+  background-color: white;
 }
-.header{
-  padding:0px;
-  height:10vh;
-}
-
 .icon {
   color: rgb(0, 0, 0);
 }
@@ -24,10 +25,8 @@ padding: 10px;
   padding: 10px 0;
   border-bottom: 2px solid black;
   margin-bottom: 2.2rem;
-  
   transition: border-color 0.3s ease;
 }
-
 
 .form-control1 {
   outline: 0;
@@ -37,10 +36,7 @@ padding: 10px;
   width: 100%;
   transition: all 0.3s ease;
 }
-.contact
-{
-  background-color: white;
-}
+
 .form-control1:focus {
   outline: 0;
   border-color: black;
@@ -62,24 +58,36 @@ padding: 10px;
   margin-bottom: 1rem;
 }
 
-.p
-{
-color:black;
+.p {
+  color: black;
 }
 
-.text{
-  color:black;
+.text {
+  color: black;
   font-size: smaller;
 }
-.contact
-{
 
-  width:60%;
-  padding-top:3rem;
+.contact {
+  width: 60%;
+  padding-top: 3rem;
   position: relative;
-  left:300px;
-  padding-left:5rem;
- 
+  left: 300px;
+  padding-left: 5rem;
   padding-bottom: 2rem;
   margin-bottom: 50px;
 }
+
+/* Responsive styles for small screens (e.g., mobile devices) */
+@media screen and (max-width: 768px) {
+  .header-title {
+    font-size: 24px; /* Adjust the font size for smaller screens */
+  }
+
+  .contact {
+    width: 100%; /* Expand the contact section to full width */
+    left: 0; /* Remove the left positioning */
+    padding: 2rem; /* Adjust padding for better spacing on small screens */
+  }
+}
+
+/* Additional media queries for other screen sizes can be added as needed. */

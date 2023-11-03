@@ -11,12 +11,18 @@
   margin: 0 auto;
   position: relative;
  
-  background-color: rgb(126, 122, 122);
-  opacity: 85%;
+  background-color: rgb(20, 19, 19);
+  opacity: 70%;
+ 
   box-shadow: #022041;
  
 }
-
+.select
+{}
+.form-label
+{
+  color:white;
+}
 .order-form:hover {
   box-shadow: 0px 0px 10px rgba(223, 210, 210, 0.4); /* Enhance shadow on hover */
 }
@@ -143,4 +149,6 @@
   font-family: 'Playfair Display', serif;
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4); /* Increase shadow intensity */
+  position: relative;
+  bottom:200px;
 }

@@ -159,7 +159,7 @@ const PaymentForm = ({ onCancel }) => {
               required
             /> */}
 
-            <label htmlFor="mealType">Meal Type:</label>
+            <label htmlFor="mealType"className="form-label">Meal Type:</label>
             <select
               id="mealType"
               value={mealType}
@@ -171,7 +171,7 @@ const PaymentForm = ({ onCancel }) => {
               <option value="Jain">Jain</option>
             </select>
 
-            <label htmlFor="quantity">Quantity:</label>
+            <label htmlFor="quantity"className="form-label">Quantity:</label>
             <input
               type="number"
               id="quantity"
@@ -180,7 +180,7 @@ const PaymentForm = ({ onCancel }) => {
               required
             />
 
-            <label htmlFor="address">Delivery Address:</label>
+            <label htmlFor="address"className="form-label">Delivery Address:</label>
             <textarea
               id="address"
               value={address}
@@ -188,7 +188,7 @@ const PaymentForm = ({ onCancel }) => {
               required
             />
 
-            <label htmlFor="orderDate">Order Date:</label> {/* Add Order Date field */}
+            <label htmlFor="orderDate"className="form-label">Order Date:</label> {/* Add Order Date field */}
             <input
               type="date"
               id="orderDate"
@@ -197,7 +197,7 @@ const PaymentForm = ({ onCancel }) => {
               required
             />
 
-            <button type="submit">Submit</button>
+            <button type="submit"className="form-label">Submit</button>
             <button type="button" onClick={onCancel}>
               Cancel
             </button>
