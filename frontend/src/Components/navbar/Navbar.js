@@ -40,9 +40,7 @@ const Navbar = () => {
                     <NavLink to="/ContactUs" onClick={() => setIsOpen(false)}>
                         Contact Us
                     </NavLink>
-                    <NavLink to="/MyBookings" onClick={() => setIsOpen(false)}>
-                        My Bookings
-                    </NavLink>
+                   
                     <NavLink to="/Login" onClick={() => setIsOpen(false)}>
                         Login
                     </NavLink>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=DM+Serif+Display&family=Oswald:wght@300&family=Playfair+Display:wght@400;600&family=Roboto+Slab&family=Young+Serif&display=swap');
 
 .hero-container {
   width: 100%;
@@ -24,6 +25,7 @@
   background-color: black;
   opacity: .6 ;
   z-index: -1;
+  font-family: 'Playfair Display', serif;
 }
 
 .hero-container h1 {
@@ -34,6 +36,7 @@
   color: white;
   text-align: center;
   text-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px;
+  font-family: 'Playfair Display', serif;
 }
 
 .description {
@@ -42,6 +45,7 @@
   font-size: 1.2rem;
   padding: 0 25%;
   text-align: center;
+  font-family: 'Playfair Display', serif;
 }
 
 
@@ -75,5 +79,6 @@
   font-family: serif;
   font-weight: bold;
   margin: 100px auto 60px auto;
+  font-family: 'Playfair Display', serif;
 }
 
