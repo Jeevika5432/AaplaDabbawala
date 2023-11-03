@@ -33,8 +33,7 @@ const ContactUs = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8800/api/contact/create', formData
-      );
+      const response = await axios.post('http://localhost:8800/api/contact/create', formData);
       console.log(response.data);
       setName('');
       setEmail('');
@@ -59,7 +58,6 @@ const ContactUs = () => {
       </div>
       <section className="contact" id="contact">
         <div className="container">
-
           <div className="row">
             <div className="col-md-3">
               <span className="icon">
@@ -120,7 +118,7 @@ const ContactUs = () => {
           </div>
           {formSubmitted && (
             <div className="confirmation-msg">
-              <p>Your form has been submitted successfully!</p>
+              <p>Your message has been submitted successfully!</p>
             </div>
           )}
         </div>

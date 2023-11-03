@@ -8,27 +8,29 @@ const FavouritePage = () => {
     {
       id: 1,
       name: 'Veg Dabba 1',
-      location: 'City Center',
-      price: '$200',
+      location: 'Bhayander',
+      price: '200',
       image:
-        'https://images.pexels.com/photos/4624741/pexels-photo-4624741.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        ' https://mumbaimirror.indiatimes.com/photo/76250587.cms',
     },
     {
       id: 2,
       name: 'Non Veg Dabba 2',
-      location: 'Beachside',
-      price: '$180',
+      location: 'Andheri',
+      price: '180',
       image:
-        'https://images.pexels.com/photos/5471151/pexels-photo-5471151.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        'https://mumbaimirror.indiatimes.com/photo/76250587.cms',
     },
     {
       id: 3,
       name: 'Jain Dabba 3',
-      location: 'Hill Station',
-      price: '$220',
+      location: 'Matunga',
+      price: '220',
       image:
-        'https://images.pexels.com/photos/4624741/pexels-photo-4624741.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        '   https://th-i.thgim.com/public/migration_catalog/article10919479.ece/alternates/FREE_1200/Head%20%20Dabbawala%20diariesHis%20TEDx%20talk%20on.ART_GPO2DST7J.1%2BCM12MUMBAI_DABBAWALA.jpg',
     },
+     
+    
   ];
 
 

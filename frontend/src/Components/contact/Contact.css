@@ -1,16 +1,22 @@
-/* Contact.css */
 
-.contact-header {
-  background-color: #b35959;
- 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=DM+Serif+Display&family=Oswald:wght@300&family=Playfair+Display:wght@400;600&family=Roboto+Slab&family=Young+Serif&display=swap');
+
+
+
+.header-title
+{
+color:black;
+font-family: 'Playfair Display', serif;
+padding: 10px;
+
 }
-
-.contact-content {
-  margin: 100px auto;
+.header{
+  padding:0px;
+  height:10vh;
 }
 
 .icon {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .form input,
@@ -18,14 +24,10 @@
   padding: 10px 0;
   border-bottom: 2px solid black;
   margin-bottom: 2.2rem;
-  /* text-transform: capitalize; */
+  
   transition: border-color 0.3s ease;
 }
 
-.form input:focus,
-.form textarea:focus {
-  border-color: #24416B;
-}
 
 .form-control1 {
   outline: 0;
@@ -35,23 +37,18 @@
   width: 100%;
   transition: all 0.3s ease;
 }
-
+.contact
+{
+  background-color: white;
+}
 .form-control1:focus {
   outline: 0;
-  border-color: crimson;
+  border-color: black;
 }
 
 .contact-info {
   text-align: center;
   margin: 40px auto;
-}
-.amisha-container{
-  background-color: white;
-  padding:20px;
-
-}
-.form ::placeholder {
-  font-weight: bold;
 }
 
 .text {
@@ -60,72 +57,29 @@
 }
 
 .form textarea {
-  border: 2px solid white;
+  border: 2px solid black;
   padding: 0.6rem !important;
   margin-bottom: 1rem;
 }
 
-.map {
-  padding: 0;
-}
-
-
-.fade-in {
-  animation: fadeIn 1s;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 768px) {
-  .contact-info {
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .map {
-    margin-top: 30px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .map {
-    margin-top: 30px;
-  }
-
-  .contact-info {
-    width: 100%;
-  }
-}
-
-
-/* Add some styles for the button */
-
-/* Add styles for the animation */
 .p
 {
 color:black;
 }
 
 .text{
-  color:white;
+  color:black;
   font-size: smaller;
 }
 .contact
 {
-  /* background-color: white; */
+
   width:60%;
-  padding-top:5rem;
+  padding-top:3rem;
   position: relative;
   left:300px;
   padding-left:5rem;
+ 
   padding-bottom: 2rem;
+  margin-bottom: 50px;
 }

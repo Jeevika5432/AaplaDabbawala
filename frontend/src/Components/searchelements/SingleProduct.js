@@ -99,125 +99,123 @@ export default function SingleProduct() {
   return (
     <>
       <section className="xl:max-w-6xl xl:mx-auto py-10 lg:py-20 p-5">
-        <img src={singleProduct.profilePicture} alt={singleProduct.name} className="w-full h-auto pt-4" />
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <div>
-            <h1 className="text-3xl lg:text-4xl xl:text-5xl text-white font-bold mb-4 lg:mb-8">
-              {singleProduct.name}
-            </h1>
-            <p className="text-slate-100 text-white font">
-              <strong>Food Name:</strong> {singleProduct[filterCriteria.category].name}
-            </p>
-            <p className="text-slate-100 mb-2">
-              <strong>Menu:</strong>
-            </p>
-            {singleProduct[filterCriteria.category].menu &&
-              singleProduct[filterCriteria.category].menu.split("\n").map((line, index) => (
-                <p key={index} className="text-slate-300 mb-2">
-                  {line}
+        <div className="card-container shadow-md p-4 bg-black bg-opacity-50 rounded-lg"> {/* Added card-container here */}
+          <img src={singleProduct.profilePicture} alt={singleProduct.name} className="w-full h-auto pt-4" />
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            
+            <div>
+              <h1 className="text-3xl lg:text-4xl xl:text-5xl text-white font-bold mb-4 lg:mb-8">
+                {singleProduct.name}
+              </h1>
+              <p className="text-slate-100 text-white font">
+                <strong>Food Name:</strong> {singleProduct[filterCriteria.category].name}
+              </p>
+              <p className="text-slate-100 mb-2">
+                <strong>Menu:</strong>
+              </p>
+              {singleProduct[filterCriteria.category].menu &&
+                singleProduct[filterCriteria.category].menu.split("\n").map((line, index) => (
+                  <p key={index} className="text-slate-300 mb-2">
+                    {line}
+                  </p>
+                ))}
+              <div className="mt-3">
+                <p className="text-slate-100 text-white font">
+                  <strong>Location:</strong> {singleProduct.locations.join(", ")}
                 </p>
-              ))}
-            <div className="mt-3">
-              <p className="text-slate-100 text-white font">
-                <strong>Location:</strong> {singleProduct.locations.join(", ")}
-              </p>
-              <p className="text-slate-100 text-white font">
-                <strong>Pricing:</strong> {singleProduct[filterCriteria.category].price}
-              </p>
-              <p className="text-slate-100 text-white font">
-                <strong>Rating:</strong> <StarRating rating={singleProduct.rating} />
-              </p>
-            </div>
-          </div>
-          <div>
-            <div className="mb-3">
-              <h2 className="text-lg lg:text-xl text-white">Add a Comment</h2>
-              <div className="mb-2">
-                <div className="mb-2">{displayRating(userRating)}</div>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    addComment(comment, userRating);
-                  }}
-                >
-                  <textarea
-                    rows="3"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    placeholder="Write your comment here"
-                    className="w-full rounded-lg p-2 bg-slate-200 text-slate-800"
-                  ></textarea>
-                  <div className="mb-2">
-                    <label htmlFor="rating" className="text-white">
-                      Rate this:{" "}
-                    </label>
-                    <input
-                      type="number"
-                      id="rating"
-                      min="1"
-                      max="5"
-                      value={userRating}
-                      onChange={(e) => setUserRating(e.target.value)}
-                      className="w-12 h-8 text-slate-800"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="bg-blue-500 text-white py-2 px-4 rounded-lg"
-                  >
-                    Add Comment
-                  </button>
-                </form>
+                <p className="text-slate-100 text-white font">
+                  <strong>Pricing:</strong> {singleProduct[filterCriteria.category].price}
+                </p>
+                <p className="text-slate-100 text-white font">
+                  <strong>Rating:</strong> <StarRating rating={singleProduct.rating} />
+                </p>
               </div>
-              <h2 className="text-lg lg:text-xl text-white mt-4">Comments</h2>
-              <ul>
-                {
-                  comments ? comments.map((review, index) => (
-                    <li key={index} className="text-slate-300 mb-2">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <strong>{review.userName}{" : "}</strong>
-                          {review.content}{" "}
-                          <br/>
-                          <span>
-                            Rating: {displayRating(comment.rating)}
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => deleteComment(index)}
-                          className="text-red-500 hover:text-red-700"
-                        >
-                          &#10006;
-                        </button>
-                      </div>
-                      <br/>
-                    </li>
-
-                  ))
-                    :
-                    <p>No reviews yet for this dabbawala</p>
-                }
-              </ul>
+            </div>
+            <div>
+              <div className="mb-3">
+                <h2 className="text-lg lg:text-xl text-white">Add a Comment</h2>
+                <div className="mb-2">
+                  <div className="mb-2">{displayRating(userRating)}</div>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      addComment(comment, userRating);
+                    }}
+                  >
+                    <textarea
+                      rows="3"
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                      placeholder="Write your comment here"
+                      className="w-full rounded-lg p-2 bg-slate-200 text-slate-800"
+                    ></textarea>
+                    <div className="mb-2">
+                      <label htmlFor="rating" className="text-white">
+                        Rate this:{" "}
+                      </label>
+                      <input
+                        type="number"
+                        id="rating"
+                        min="1"
+                        max="5"
+                        value={userRating}
+                        onChange={(e) => setUserRating(e.target.value)}
+                        className="w-12 h-8 text-slate-800"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="bg-blue-500 text-white py-2 px-4 rounded-lg"
+                    >
+                      Add Comment
+                    </button>
+                  </form>
+                </div>
+                <h2 className="text-lg lg:text-xl text-white mt-4">Comments</h2>
+                <ul>
+  {comments ? comments.map((review, index) => (
+    <li key={index} className="text-slate-300 mb-2">
+      <div className="flex items-center justify-between">
+        <div>
+          <strong>{review.userName}{" : "}</strong>
+          {review.content}{" "}
+          <br/>
+          <span>
+            Rating: {displayRating(comment.rating)}
+          </span>
+        </div>
+        <button
+          onClick={() => deleteComment(index)}
+          className="text-red-500 hover:text-red-700"
+        >
+          &#10006;
+        </button>
+      </div>
+      <br/>
+    </li>
+  )) : <p>No reviews yet for this dabbawala</p>}
+</ul>
+              </div>
             </div>
           </div>
+          <div className="text-center my-5">
+            <button
+              className="bg-white text-slate-800 py-2 px-4"
+              onClick={() => navigate("/payment-form", {
+                state: { userId, frequency: filterCriteria.frequency, prices: singleProduct[filterCriteria.category].price, foodName: singleProduct[filterCriteria.category].name }
+              })}
+            >
+              Payment
+            </button>
+          </div>
+          <ul className="flex items-center justify-end mt-5">
+            <li>
+              <Link to="/fetch-products" className="text-slate-200 hover-text-white">
+                &larr; Back
+              </Link>
+            </li>
+          </ul>
         </div>
-        <div className="text-center my-5">
-          <button
-            className="bg-white text-slate-800 py-2 px-4"
-            onClick={() => navigate("/payment-form", {
-              state: { userId, frequency: filterCriteria.frequency, prices: singleProduct[filterCriteria.category].price, foodName: singleProduct[filterCriteria.category].name }
-            })}
-          >
-            Payment
-          </button>
-        </div>
-        <ul className="flex items-center justify-end mt-5">
-          <li>
-            <Link to="/fetch-products" className="text-slate-200 hover-text-white">
-              &larr; Back
-            </Link>
-          </li>
-        </ul>
       </section>
     </>
   );

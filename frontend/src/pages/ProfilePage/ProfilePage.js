@@ -14,10 +14,10 @@ const ProfilePage = () => {
 
     return (
         <div className="profile-page">
-            <h2 className="profile-page__title">Profile Page</h2>
+            <h2 className="profile-page__title">Delivering happiness, one tiffin at a time.</h2>
             {isLoggedIn ? (
                 <div className="profile-page__welcome">
-                    <p>Welcome, Altaf!</p>
+                    <p className="yes">"Welcome, Altaf!"</p>
                     <button
                         className="profile-page__logout-btn"
                         onClick={handleLogout}
