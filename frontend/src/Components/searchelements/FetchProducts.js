@@ -66,7 +66,7 @@ export default function FetchProducts() {
             <div>
               <picture>
                 <source media="(min-width: 1200px)" srcSet={item.profilePicture} />
-                <img src={item.profilePicture} alt={item.name} style={{ width: "1200px", height: "auto" }} />
+                <img src={item.profilePicture} alt={item.name} style={{ width: "12000px", height: "auto" }} />
                 {/* Adjust the width and height values to increase the image size */}
               </picture>
             </div>
