@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Login.css";
 import dabbaImage from "../../img/db_per-removebg-preview.png";
@@ -171,12 +171,14 @@ const Login = () => {
                                                         />
                                                         <i className="input-icon uil uil-lock-alt"></i>
                                                     </div>
-                                                    <button
-                                                        type="submit"
-                                                        className="btn mt-4"
-                                                    >
-                                                        Submit
-                                                    </button>
+                                                    <Link to="/">
+                                                        <button
+                                                            type="submit"
+                                                            className="btn mt-4"
+                                                        >
+                                                            Submit
+                                                        </button>
+                                                    </Link>
                                                 </form>
                                                 <p className="mb-0 mt-4 text-center">
                                                     <a
