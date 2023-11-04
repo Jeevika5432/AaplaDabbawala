@@ -25,11 +25,8 @@ const Navbar = () => {
                     <NavLink to="/" onClick={() => setIsOpen(false)}>
                         Home
                     </NavLink>
-                    <NavLink
-                        to="/SpecialOffers"
-                        onClick={() => setIsOpen(false)}
-                    >
-                        Special Offers
+                    <NavLink to="/pricing" onClick={() => setIsOpen(false)}>
+                        Pricing
                     </NavLink>
                     <NavLink to="/MyBookings" onClick={() => setIsOpen(false)}>
                         My Bookings
@@ -39,9 +36,6 @@ const Navbar = () => {
                     </NavLink>
                     <NavLink to="/ContactUs" onClick={() => setIsOpen(false)}>
                         Contact Us
-                    </NavLink>
-                    <NavLink to="/MyBookings" onClick={() => setIsOpen(false)}>
-                        My Bookings
                     </NavLink>
                     <NavLink to="/Login" onClick={() => setIsOpen(false)}>
                         Login

@@ -7,36 +7,22 @@
 h2 {
     font-size: 24px;
     margin-bottom: 15px;
-    color: #333;
+    color: white;
 }
 
 p {
-    color: #555;
+    color: white;
     margin-bottom: 20px;
 }
 
 .existing-notifications {
     margin-top: 15px;
+    color: white;
 }
 
 .notification-item {
-    background-color: #f8f8f8;
+    background-color: black;
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
-}
-
-.notification-button {
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 15px;
-    transition: background-color 0.3s ease;
-}
-
-.notification-button:hover {
-    background-color: #45a049;
 }
