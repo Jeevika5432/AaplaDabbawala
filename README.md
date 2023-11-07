@@ -59,8 +59,11 @@ Explore the website's UI to get a feel for its design and functionality.
 
 
 
-![![2023-11-06 (7)](https://github.com/Amisha-05/AaplaDabbawala/assets/110057532/f21662c6-c9c1-43eb-9b43-f39abbc17a87)
-2023-11-06 (10)](https://github.com/Amisha-05/AaplaDabbawala/assets/110057532/ef191c21-baf9-4175-a2bf-bbd37b77be76)
+
+
+![2023-11-06 (7)](https://github.com/Amisha-05/AaplaDabbawala/assets/110057532/83952bb5-63e1-418d-8942-5a610bdd4995)
+
+
 
 
 
