@@ -73,7 +73,7 @@
     padding: 0;
     margin: 10px auto;
     cursor: pointer;
-    background-color: #ffeba7;
+    background-color: rgb(56, 34, 34);
 }
 
 .login_container .checkbox:checked + label:before,
@@ -84,7 +84,7 @@
     height: 36px;
     border-radius: 50%;
     color: #ffeba7;
-    background-color: purple;
+    background-color: rgb(71, 3, 3);
     font-family: "unicons";
     content: "\eb4f";
     z-index: 20;
@@ -303,13 +303,13 @@
 
 .login_container .btn:active,
 .login_container .btn:focus {
-    background-color: purple;
+    background-color: rgb(71, 3, 3);
     color: #ffeba7;
     box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }
 
 .login_container .btn:hover {
-    background-color: purple;
+    background-color: rgb(71, 3, 3);
     color: #ffeba7;
     box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }

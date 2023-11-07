@@ -1,11 +1,18 @@
 .footer {
     background: #000;
     margin-top: 0px;
+    width:100%;
 }
 
 .footer .footer_top {
     padding-top: 45px;
     padding-bottom: 40px;
+  
+}
+.container
+{
+    padding: 30px;
+    
 }
 
 @media (max-width: 767px) {
@@ -114,6 +121,7 @@
 
 .footer .copy-right_text {
     padding-bottom: 30px;
+   
 }
 
 .footer .copy-right_text .footer_border {

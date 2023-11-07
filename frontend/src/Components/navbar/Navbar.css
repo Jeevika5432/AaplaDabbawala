@@ -1,4 +1,3 @@
-/* Navbar.css */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=DM+Serif+Display&family=Oswald:wght@300&family=Playfair+Display:wght@400;600&family=Roboto+Slab&family=Young+Serif&display=swap');
 
 /* Main Navbar Styles */
@@ -8,7 +7,6 @@
     z-index: 99;
     padding: 10px;
     position: static;
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
 }
 
 .navbar-container {
@@ -27,13 +25,6 @@
     font-family: 'Playfair Display', serif;
 }
 
-.navbar-logo img {
-    padding-top: 0px;
-    width: 120px; /* Adjust the width to make the logo smaller */
-    height: auto; /* Maintain the aspect ratio */
-    margin-right: 10px; /* Add some spacing between the logo and text */
-}
-
 .navbar-logo span {
     font-size: 1.2rem;
     color: rgb(233, 143, 143);
@@ -43,20 +34,22 @@
     display: flex;
     gap: 40px;
     align-items: flex-end;
+    flex-wrap: wrap; /* Allow items to wrap to the next line on small screens */
+    justify-content: flex-end; /* Align links to the right on small screens */
 }
 
 .navbar-links a {
     color: #b8a09d;
     text-decoration: none;
     transition: color 0.3s ease;
-    position: relative; 
-    font-family: 'Playfair Display', serif;/* Add position relative for the underline */
+    position: relative;
+    font-family: 'Playfair Display', serif;
 }
 
 .navbar-links a::after {
     content: "";
     position: absolute;
-    bottom: -5px; /* Adjust the distance of the underline from the text */
+    bottom: -5px;
     left: 0;
     width: 0;
     height: 2px;
@@ -74,7 +67,7 @@
 
 /* Toggle Button */
 .navbar-toggle {
-    display: none;
+    display: block; /* Show the toggle button for small screens */
     cursor: pointer;
 }
 
@@ -139,7 +132,6 @@
 .navbar-profile i {
     font-size: 20px;
     color: rgb(228, 208, 208);
-    /* background-color: #24416B; */
     border-radius: 50%;
     padding: 5px;
     outline: 1px solid rgb(215, 200, 200);
@@ -189,54 +181,33 @@
     color: crimson;
 }
 
-/* Responsive Styles */
+/* Updated styles for mobile devices */
 @media screen and (max-width: 768px) {
-    .navbar-profile {
-        display: none; /* Hide the profile icon in desktop navbar */
-    }
-    .navbar-container {
-        margin: 0;
-        padding: 10px 15px;
-    }
-
-    .navbar-links {
+    .navbar-main:not(.active) .navbar-links {
         display: none;
-        flex-wrap: wrap;
-        justify-content: center;
     }
 
-    .navbar-links.active {
-        position: absolute;
-        right: 60px;
-        top: 43px;
-        gap: 10px;
-        width: 180px;
-        padding: 30px;
-        border-radius: 5px;
-        background-color: rgba(251, 248, 248, 0.7);
+    .navbar-main.active .navbar-links {
+        display: flex;
         flex-direction: column;
-        display: flex;
+        align-items: flex-end;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background-color: #f9f9f9;
+        z-index: 1;
     }
 
-    .navbar-toggle {
-        display: block;
-        position: relative;
+    .navbar-main.active .navbar-links a {
+        color: #b8a09d;
     }
 
-    .mobile-navbar {
-        display: flex;
-        justify-content: space-around;
+    .navbar-main.active .navbar-links a.active::after {
+        width: 100%;
     }
 
-    .navbar-main {
-        padding: 8px 15px;
-    }
-
-    .navbar-logo {
-        font-size: 1.5rem;
-    }
-
-    .navbar-logo span {
-        display: none;
+    .navbar-main.active .navbar-links a:hover::after {
+        width: 100%;
     }
 }

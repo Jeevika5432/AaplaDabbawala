@@ -44,7 +44,7 @@ const FavouritePage = () => {
             <div className="dabba-details">
               <h3 className="dabba-name">{dabba.name}</h3>
               <p className="dabba-location">{dabba.location}</p>
-              <p className="dabba-price">{dabba.price} per night</p>
+              <p className="dabba-price">{dabba.price} rupees</p>
             </div>
           </div>
         ))}

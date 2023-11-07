@@ -68,14 +68,16 @@
 
 .amisha-container {
   background-color: white;
-  padding: 20px;
+  padding: 30px;
+  padding-left:30px;
 }
 
 .headerha-title {
   text-align: center;
-  color: black;
+  color: white;
   font-size: 45px;
   font-weight: bold;
+  padding-top:20px;
   font-family: 'Playfair Display', serif;
 }
 

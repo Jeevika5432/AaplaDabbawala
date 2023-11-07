@@ -197,8 +197,10 @@ const ProfileSetupForm = () => {
               <button type="button" onClick={handleAddLocation} style={{
                 backgroundColor: 'red',
                 padding: '10px',
+                margin:'20px 0px 0px 0px',
                 borderRadius: '10px',
                 color: 'white',
+                
                 transition: 'background-color 0.3s',  // Adding a smooth transition effect
               }}
                 onMouseOver={(e) => e.target.style.backgroundColor = 'darkred'}

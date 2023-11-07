@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import './singlefetch.css'
 
 // Custom StarRating component
 function StarRating({ rating }) {
@@ -61,8 +62,8 @@ export default function FetchProducts() {
         {items.map((item) => (
           <article
             key={item._id}
-            className={`grid grid-cols-1 gap-1 md:grid-cols-2 md:place-items-center lg:gap-10 xl:gap-20 card-container shadow-md p-4 bg-black bg-opacity-50 rounded-lg ${item.desc ? "mb-5" : ""}`}
-          >
+            className={`grid grid-cols-1 gap-1 md:grid-cols-2 md:place-items-center lg:gap-10 xl:gap-20 card-container p-4 rounded-lg ${item.desc ? "mb-5" : ""} custom-shadow `}
+            >
             <div>
               <picture>
                 <source media="(min-width: 1200px)" srcSet={item.profilePicture} />
@@ -72,22 +73,22 @@ export default function FetchProducts() {
             </div>
 
             <div>
-              <h2 className="font-bold text-4xl mb-5 text-white">{item.name}</h2>
-              <p className="text-slate-100 mb-2">
-                <strong>Menu:</strong>
+              <h2 className="font-bold text-4xl mb-3 text-white hii">{item.name}</h2>
+              <p className="text-slate-100 mb-2 hii">
+                <strong className="hii">Menu:</strong>
               </p>
               <p
-                className="text-slate-300 mb-5">
+                className="text-slate-300 mb-2 hii">
                 {item[filterCriteria.category].menu}
               </p>
-              <p className="text-slate-300 mb-2">
-                <strong>Locations:</strong> {item.locations.join(", ")}
+              <p className="text-slate-300 mb-2 hii">
+                <strong className="hii">Locations:</strong> {item.locations.join(", ")}
               </p>
-              <p className="text-slate-300 mb-10">
-                <strong>Pricing:</strong> {item[filterCriteria.category].price}
+              <p className="text-slate-300 mb-10 hii">
+                <strong className="hii">Pricing:</strong> {item[filterCriteria.category].price}
               </p>
-              <div className="flex items-center justify-between">
-                <Link to={`/fetch-products/${item._id}`} className="border-2 border-white black py-2 px-4 text-white">
+              <div className="flex items-center justify-between hii">
+                <Link to={`/fetch-products/${item._id}`} className="border-2 border-white black py-2 px-4 text-white hello">
                   More Details
                 </Link>
                 <StarRating rating={item.rating} />
