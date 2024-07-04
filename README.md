@@ -1,8 +1,25 @@
-# AaplaDabbawala
-It is a platform where users can easily subscribe to meal services from their local dabbawalas.
-Users  will register, pick subscription plans according to their convenience, and our trusted dabbawalas independently deliver the meals.
+### Project Title: AaplaDabbawala
 
-Explore the website's UI to get a feel for its design and functionality.
+#### Description
+AaplaDabbawala is a platform that allows users to subscribe to meal services from local dabbawalas. Users can register, choose subscription plans, and receive meals delivered by trusted dabbawalas. The project aims to streamline meal delivery services, providing convenience and reliability.
+
+#### Features
+- **User Registration:** Users can create accounts and manage their profiles.
+- **Subscription Plans:** Offers various meal plans to cater to different dietary preferences and schedules.
+- **Meal Delivery Tracking:** Allows users to track their meal deliveries in real-time.
+- **Payment Integration:** Secure payment processing for subscription plans.
+
+#### Project Structure
+- **backend/:** Contains the server-side code and APIs.
+- **frontend/:** Includes the client-side code built with React.
+- **database/:** Schema and seed files for the database.
+- **config/:** Configuration files for the project.
+- **scripts/:** Scripts for various tasks like data migration and seeding.
+
+#### Getting Started
+**Prerequisites:**
+- Node.js
+- npm
 
 ### Steps to Run the AaplaDabbawala Project
 
@@ -35,6 +52,33 @@ Explore the website's UI to get a feel for its design and functionality.
    cd ../frontend
    npm start
    ```
+
+   #### Contributing
+We welcome contributions to enhance this project! Please follow these steps to contribute:
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add your commit message"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request detailing your changes.
+
+   #### License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+#### Acknowledgements
+Thanks to the multidisciplinary team for their collaboration and support. Special thanks to the developers and researchers who contributed to the project.
+
+For more details, visit the [AaplaDabbawala GitHub Repository](https://github.com/Jeevika5432/AaplaDabbawala).
+
+Explore the website's UI to get a feel for its design and functionality.
 
 ### Project Overview
 **AaplaDabbawala** is a platform that allows users to subscribe to meal services from local dabbawalas. Users can register, choose subscription plans, and receive meals delivered by trusted dabbawalas. The project aims to streamline meal delivery services, providing convenience and reliability.
