@@ -4,6 +4,43 @@ Users  will register, pick subscription plans according to their convenience, an
 
 Explore the website's UI to get a feel for its design and functionality.
 
+### Steps to Run the AaplaDabbawala Project
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Jeevika5432/AaplaDabbawala.git
+   cd AaplaDabbawala
+   ```
+
+2. **Install Dependencies:**
+   - Backend:
+     ```bash
+     cd backend
+     npm install
+     ```
+   - Frontend:
+     ```bash
+     cd ../frontend
+     npm install
+     ```
+
+3. **Start the Backend Server:**
+   ```bash
+   cd backend
+   npm start
+   ```
+
+4. **Start the Frontend Server:**
+   ```bash
+   cd ../frontend
+   npm start
+   ```
+
+### Project Overview
+**AaplaDabbawala** is a platform that allows users to subscribe to meal services from local dabbawalas. Users can register, choose subscription plans, and receive meals delivered by trusted dabbawalas. The project aims to streamline meal delivery services, providing convenience and reliability.
+
+
+
 
 
 
